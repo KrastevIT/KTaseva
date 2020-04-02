@@ -1,6 +1,7 @@
 using KTaseva.App.Common;
 using KTaseva.Data;
 using KTaseva.Models;
+using KTaseva.Services.Admin;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -32,6 +33,8 @@ namespace KTaseva.App
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            RegisterServiceLayer(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -63,6 +66,11 @@ namespace KTaseva.App
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+        }
+
+        private void RegisterServiceLayer(IServiceCollection services)
+        {
+            services.AddTransient<IAdminService, AdminService>();
         }
     }
 }

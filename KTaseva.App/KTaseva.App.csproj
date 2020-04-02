@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KTaseva.Data\KTaseva.Data.csproj" />
+    <ProjectReference Include="..\KTaseva.Services\KTaseva.Services.csproj" />
+    <ProjectReference Include="..\KTaseva.ViewModels\KTaseva.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
