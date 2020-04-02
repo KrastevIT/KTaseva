@@ -165,3 +165,4 @@ C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva\obj\Debug\
 C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva\obj\Debug\netcoreapp3.1\Razor\Views\Photos\Index.cshtml.g.cs
