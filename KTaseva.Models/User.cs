@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace KTaseva.Models
@@ -14,5 +15,7 @@ namespace KTaseva.Models
         [MinLength(2)]
         [MaxLength(50)]
         public string LastName { get; set; }
+
+        public virtual ICollection<Appointment> Appointments { get; set; } = new HashSet<Appointment>();
     }
 }

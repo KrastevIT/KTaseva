@@ -12,6 +12,7 @@ using KTaseva.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using KTaseva.Models;
 
 namespace KTaseva
 {
@@ -30,7 +31,7 @@ namespace KTaseva
             services.AddDbContext<KTasevaDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<KTasevaDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
