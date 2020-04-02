@@ -1,10 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace KTaseva.Models
 {
-    class User
+    public class User : IdentityUser
     {
+        [Required]
+        [MinLength(2)]
+        [MaxLength(50)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [MinLength(2)]
+        [MaxLength(50)]
+        public string LastName { get; set; }
     }
 }

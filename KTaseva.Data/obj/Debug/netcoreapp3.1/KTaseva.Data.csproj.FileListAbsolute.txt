@@ -1,0 +1,15 @@
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\bin\Debug\netcoreapp3.1\KTaseva.Data.deps.json
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\bin\Debug\netcoreapp3.1\KTaseva.Data.runtimeconfig.json
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\bin\Debug\netcoreapp3.1\KTaseva.Data.runtimeconfig.dev.json
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\bin\Debug\netcoreapp3.1\KTaseva.Data.dll
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\bin\Debug\netcoreapp3.1\KTaseva.Data.pdb
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\obj\Debug\netcoreapp3.1\KTaseva.Data.csprojAssemblyReference.cache
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\obj\Debug\netcoreapp3.1\KTaseva.Data.AssemblyInfoInputs.cache
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\obj\Debug\netcoreapp3.1\KTaseva.Data.AssemblyInfo.cs
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\obj\Debug\netcoreapp3.1\KTaseva.Data.csproj.CoreCompileInputs.cache
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\obj\Debug\netcoreapp3.1\KTaseva.Data.dll
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\obj\Debug\netcoreapp3.1\KTaseva.Data.pdb
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\obj\Debug\netcoreapp3.1\KTaseva.Data.genruntimeconfig.cache
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\bin\Debug\netcoreapp3.1\KTaseva.Models.dll
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\bin\Debug\netcoreapp3.1\KTaseva.Models.pdb
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Data\obj\Debug\netcoreapp3.1\KTaseva.Data.csproj.CopyComplete

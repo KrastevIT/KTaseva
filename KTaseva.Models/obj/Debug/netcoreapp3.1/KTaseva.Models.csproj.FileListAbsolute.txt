@@ -1,0 +1,9 @@
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Models\bin\Debug\netcoreapp3.1\KTaseva.Models.deps.json
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Models\bin\Debug\netcoreapp3.1\KTaseva.Models.dll
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Models\bin\Debug\netcoreapp3.1\KTaseva.Models.pdb
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Models\obj\Debug\netcoreapp3.1\KTaseva.Models.csprojAssemblyReference.cache
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Models\obj\Debug\netcoreapp3.1\KTaseva.Models.AssemblyInfoInputs.cache
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Models\obj\Debug\netcoreapp3.1\KTaseva.Models.AssemblyInfo.cs
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Models\obj\Debug\netcoreapp3.1\KTaseva.Models.csproj.CoreCompileInputs.cache
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Models\obj\Debug\netcoreapp3.1\KTaseva.Models.dll
+C:\Users\Кристиян Кръстев\source\repos\KTaseva\KTaseva.Models\obj\Debug\netcoreapp3.1\KTaseva.Models.pdb

@@ -1425,6 +1425,38 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "KTaseva.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "KTaseva.Models": "1.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.0"
+        },
+        "compile": {
+          "bin/placeholder/KTaseva.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/KTaseva.Data.dll": {}
+        }
+      },
+      "KTaseva.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "3.1.0",
+          "Microsoft.Extensions.Identity.Stores": "3.1.0"
+        },
+        "compile": {
+          "bin/placeholder/KTaseva.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/KTaseva.Models.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -5339,10 +5371,21 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "KTaseva.Data/1.0.0": {
+      "type": "project",
+      "path": "../KTaseva.Data/KTaseva.Data.csproj",
+      "msbuildProject": "../KTaseva.Data/KTaseva.Data.csproj"
+    },
+    "KTaseva.Models/1.0.0": {
+      "type": "project",
+      "path": "../KTaseva.Models/KTaseva.Models.csproj",
+      "msbuildProject": "../KTaseva.Models/KTaseva.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "KTaseva.Data >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 3.1.2",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 3.1.2",
       "Microsoft.AspNetCore.Identity.UI >= 3.1.2",
@@ -5379,7 +5422,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Кристиян Кръстев\\source\\repos\\KTaseva\\KTaseva.Data\\KTaseva.Data.csproj": {
+              "projectPath": "C:\\Users\\Кристиян Кръстев\\source\\repos\\KTaseva\\KTaseva.Data\\KTaseva.Data.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
