@@ -5,11 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KTaseva.Data\KTaseva.Data.csproj" />
     <ProjectReference Include="..\KTaseva.ViewModels\KTaseva.ViewModels.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Cloudinary\" />
+    <PackageReference Include="Cloudinary.Core" Version="1.31.0" />
   </ItemGroup>
 
 </Project>

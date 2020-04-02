@@ -5,6 +5,6 @@ namespace KTaseva.Services.Cloudinary
 {
     public interface ICloudinaryService
     {
-        Task<string> UploadImageAsync(IFormFile image);
+        Task UploadImageAsync(IFormFile image, string userId);
     }
 }

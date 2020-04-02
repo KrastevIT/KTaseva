@@ -17,5 +17,7 @@ namespace KTaseva.Models
         public string LastName { get; set; }
 
         public virtual ICollection<Appointment> Appointments { get; set; } = new HashSet<Appointment>();
+
+        public virtual ICollection<Photo> Photos { get; set; } = new HashSet<Photo>();
     }
 }

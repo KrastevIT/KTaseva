@@ -1,31 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using KTaseva.Services.Admin;
+﻿using KTaseva.Models;
+using KTaseva.Services.Cloudinary;
+using KTaseva.Services.Photos;
 using KTaseva.ViewModels.Admin;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace KTaseva.App.Controllers
 {
     public class PhotosController : Controller
     {
-        private readonly IAdminService adminService;
+        private readonly ICloudinaryService cloudinaryService;
+        private readonly UserManager<User> userManager;
+        private readonly IPhotoService photoService;
 
-        public PhotosController(IAdminService adminService)
+        public PhotosController(
+            ICloudinaryService cloudinaryService,
+            UserManager<User> userManager,
+            IPhotoService photoService)
         {
-            this.adminService = adminService;
+            this.cloudinaryService = cloudinaryService;
+            this.userManager = userManager;
+            this.photoService = photoService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var models = this.photoService.GetAllPhotos();
+            return View(models);
         }
 
         [HttpPost]
-        public IActionResult Add(AdminInputAddPhoto model)
+        public async Task<IActionResult> Add(AdminInputAddPhoto model)
         {
-            this.adminService.AddPhoto(model);
+            var userId = this.userManager.GetUserId(this.User);
+            await this.cloudinaryService.UploadImageAsync(model.Photo, userId);
             return RedirectToAction(nameof(Index));
         }
     }

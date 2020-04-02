@@ -1,8 +1,10 @@
+using CloudinaryDotNet;
 using KTaseva.App.Common;
 using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.Services.Admin;
 using KTaseva.Services.Cloudinary;
+using KTaseva.Services.Photos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -36,6 +38,13 @@ namespace KTaseva.App
             services.AddRazorPages();
 
             RegisterServiceLayer(services);
+
+            Account account = new Account(
+                        this.Configuration["Cloudinary:AppName"],
+                        this.Configuration["Cloudinary:AppKey"],
+                        this.Configuration["Cloudinary:AppSecret"]);
+            Cloudinary cloudinary = new Cloudinary(account);
+            services.AddSingleton(cloudinary);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -71,8 +80,9 @@ namespace KTaseva.App
 
         private void RegisterServiceLayer(IServiceCollection services)
         {
-            services.AddTransient<IAdminService, AdminService>();
-            services.AddTransient<ICloudinaryService, CloudinaryService>();
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
+            services.AddScoped<IPhotoService, PhotoService>();
         }
     }
 }

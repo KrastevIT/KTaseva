@@ -1,20 +1,20 @@
-﻿<div class="margin">
+﻿@model IEnumerable<PhotoViewModel>
+
+<div class="margin">
     @if (this.User.IsInRole("Administrator"))
     {
         <vc:add-photo></vc:add-photo>
     }
     <div class="container">
         <div class="row">
-            <!-- Team Member 1 -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-0 shadow">
-                    <img src="https://scontent.fsof10-1.fna.fbcdn.net/v/t1.0-9/79814543_136822547758352_495522166624747520_o.jpg?_nc_cat=104&_nc_sid=9267fe&_nc_ohc=NUNYEsALTH8AX-NiJj4&_nc_ht=scontent.fsof10-1.fna&oh=143afb6ffef34914f1c1de1048a00774&oe=5EAC6C5C" class="card-img-top" alt="...">
-                    <div class="card-body text-center">
-                        <h5 class="card-title mb-0">Team Member</h5>
-                        <div class="card-text text-black-50">Web Developer</div>
+            @foreach (var photo in Model)
+            {
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow">
+                        <img src="@photo.Url" class="card-img-top">
                     </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </div>

@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KTaseva.Data;
+using KTaseva.ViewModels.Admin;
+using KTaseva.ViewModels.Photos;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +18,8 @@ namespace KTaseva.App.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            return View();
+            var model = new AdminInputAddPhoto();
+            return View(model);
         }
     }
 }
