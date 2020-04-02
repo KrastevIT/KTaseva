@@ -1,4 +1,8 @@
 ﻿<div class="margin">
+    @if (this.User.IsInRole("Administrator"))
+    {
+        <vc:add-photo></vc:add-photo>
+    }
     <div class="container">
         <div class="row">
             <!-- Team Member 1 -->

@@ -12,5 +12,11 @@ namespace KTaseva.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Add()
+        {
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
