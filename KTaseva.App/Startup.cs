@@ -2,6 +2,7 @@ using KTaseva.App.Common;
 using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.Services.Admin;
+using KTaseva.Services.Cloudinary;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -71,6 +72,7 @@ namespace KTaseva.App
         private void RegisterServiceLayer(IServiceCollection services)
         {
             services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
         }
     }
 }
