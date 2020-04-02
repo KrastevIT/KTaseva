@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-[assembly: HostingStartup(typeof(KTaseva.Areas.Identity.IdentityHostingStartup))]
-namespace KTaseva.Areas.Identity
+[assembly: HostingStartup(typeof(KTaseva.App.Areas.Identity.IdentityHostingStartup))]
+namespace KTaseva.App.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {

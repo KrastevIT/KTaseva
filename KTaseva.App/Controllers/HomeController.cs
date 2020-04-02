@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using KTaseva.App.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using KTaseva.Models;
+using System.Diagnostics;
 
-namespace KTaseva.Controllers
+namespace KTaseva.App.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,4 +1,4 @@
-using KTaseva.Common;
+using KTaseva.App.Common;
 using KTaseva.Data;
 using KTaseva.Models;
 using Microsoft.AspNetCore.Builder;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace KTaseva
+namespace KTaseva.App
 {
     public class Startup
     {

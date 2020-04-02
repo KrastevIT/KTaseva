@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-KTaseva-973C26A9-2C01-445A-A685-6E1320D220E9</UserSecretsId>
+    <UserSecretsId>aspnet-KTaseva.App-973C26A9-2C01-445A-A685-6E1320D220E9</UserSecretsId>
   </PropertyGroup>
 
 

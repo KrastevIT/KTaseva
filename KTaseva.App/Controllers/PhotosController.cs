@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace KTaseva.Controllers
+namespace KTaseva.App.Controllers
 {
     public class PhotosController : Controller
     {

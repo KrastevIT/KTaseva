@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace KTaseva.Common
+namespace KTaseva.App.Common
 {
     public static class SeedDatabase
     {

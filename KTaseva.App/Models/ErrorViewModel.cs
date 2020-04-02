@@ -1,6 +1,6 @@
 using System;
 
-namespace KTaseva.Models
+namespace KTaseva.App.Models
 {
     public class ErrorViewModel
     {
