@@ -1,7 +1,9 @@
+using KTaseva.Common;
 using KTaseva.Data;
 using KTaseva.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +27,7 @@ namespace KTaseva
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<KTasevaDbContext>();
 
             services.AddControllersWithViews();
@@ -50,6 +53,8 @@ namespace KTaseva
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.SeedAdmin();
 
             app.UseEndpoints(endpoints =>
             {
