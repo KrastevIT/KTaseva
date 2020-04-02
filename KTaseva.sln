@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29924.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTaseva", "KTaseva\KTaseva.csproj", "{6F0269A1-99B9-452D-A721-6DC6C4E9133F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTaseva.App", "KTaseva\KTaseva.App.csproj", "{6F0269A1-99B9-452D-A721-6DC6C4E9133F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTaseva.Data", "KTaseva.Data\KTaseva.Data.csproj", "{2341ECFD-1E33-4BF9-AD45-D3F978596B69}"
 EndProject
