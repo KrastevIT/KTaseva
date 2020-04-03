@@ -3,6 +3,7 @@ using KTaseva.App.Common;
 using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.Services.Admin;
+using KTaseva.Services.Appointments;
 using KTaseva.Services.Cloudinary;
 using KTaseva.Services.Photos;
 using Microsoft.AspNetCore.Builder;
@@ -83,6 +84,7 @@ namespace KTaseva.App
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<ICloudinaryService, CloudinaryService>();
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<IAppointmentService, AppointmentService>();
         }
     }
 }
