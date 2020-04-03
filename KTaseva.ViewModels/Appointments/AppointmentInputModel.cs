@@ -6,7 +6,7 @@ namespace KTaseva.ViewModels.Appointments
 {
     public class AppointmentInputModel
     {
-        public string Procedure { get; set; }
+        public int Procedure { get; set; }
 
         public string NailPolish { get; set; }
 

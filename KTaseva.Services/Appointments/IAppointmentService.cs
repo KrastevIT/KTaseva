@@ -1,7 +1,9 @@
-﻿namespace KTaseva.Services.Appointments
+﻿using KTaseva.ViewModels.Appointments;
+
+namespace KTaseva.Services.Appointments
 {
     public interface IAppointmentService
     {
-        void Add();
+        void Add(AppointmentInputModel model, string userId);
     }
 }
