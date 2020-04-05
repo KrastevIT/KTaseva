@@ -1,144 +1,8 @@
 ﻿@model AppointmentInputModel
+@using KTaseva.Models.Enums
 @{
     ViewData["Title"] = "Index";
 }
-
-@*<div class="container">
-        <h4>Juni 2018</h4>
-
-        <div class="time-picker">
-            <div class="row time-picker-header">
-                <button href="#" class="arrow left inactive"></button>
-                <ul class="date-slot">
-                    <li class="date-slot-wrapper">
-                        <div class="date-slot-item">
-                            <span class="date-slot-day">Mo</span>
-                            <span class="date-slot-date">11</span>
-                        </div>
-                    </li>
-                    <li class="date-slot-wrapper">
-                        <div class="date-slot-item active">
-                            <span class="date-slot-day">Di</span>
-                            <span class="date-slot-date">12</span>
-                        </div>
-                    </li>
-                    <li class="date-slot-wrapper">
-                        <div class="date-slot-item">
-                            <span class="date-slot-day">Mi</span>
-                            <span class="date-slot-date">13</span>
-                        </div>
-                    </li>
-                    <li class="date-slot-wrapper">
-                        <div class="date-slot-item">
-                            <span class="date-slot-day">Do</span>
-                            <span class="date-slot-date">14</span>
-                        </div>
-                    </li>
-                    <li class="date-slot-wrapper">
-                        <div class="date-slot-item no-free-slot">
-                            <span class="date-slot-day">Fr</span>
-                            <span class="date-slot-date">15</span>
-                        </div>
-                    </li>
-                </ul>
-                <button href="#" class="arrow right"></button>
-
-            </div>
-
-            <div class="row">
-                <ul class="time-slot">
-                    <li class="time-slot-item">9:00 - 9:30</li>
-                    <li class="time-slot-item">10:00 - 10:30</li>
-                    <li class="time-slot-item">11:00 - 11:30</li>
-                    <li class="time-slot-item">11:30 - 12:00</li>
-                </ul>
-                <ul class="time-slot">
-                    <li class="time-slot-item">8:00 - 8:30</li>
-                    <li class="time-slot-item">10:00 - 10:30</li>
-                    <li class="time-slot-item">11:00 - 11:30</li>
-                </ul>
-                <ul class="time-slot">
-                    <li class="time-slot-item">9:00 - 9:30</li>
-                    <li class="time-slot-item">10:00 - 10:30</li>
-                    <li class="time-slot-item">11:00 - 11:30</li>
-                    <li class="time-slot-item">12:00 - 12:30</li>
-                    <li class="time-slot-item">13:00 - 13:30</li>
-                </ul>
-                <ul class="time-slot">
-                    <li class="time-slot-item">9:00 - 9:30</li>
-                    <li class="time-slot-item picked">10:00 - 10:30</li>
-                    <li class="time-slot-item">11:00 - 11:30</li>
-                    <li class="time-slot-item">12:00 - 12:30</li>
-                </ul>
-                <ul class="time-slot">
-                    <li class="time-slot-item">9:00 - 9:30</li>
-                    <li class="time-slot-item">10:00 - 10:30</li>
-                    <li class="time-slot-item">11:00 - 11:30</li>
-                </ul>
-            </div>
-        </div>
-    </div>*@
-
-
-@* test2 *@
-
-@*<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-
-
-    <div class="container">
-        <div class="margin">
-            <div class="text-center">
-                <a asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-chevron-left"></i></a>
-                <h1>Април</h1>
-                <a asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-chevron-right"></i></a>
-            </div>
-
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Дни</th>
-                        <th scope="col">09:00</th>
-                        <th scope="col">11:00</th>
-                        <th scope="col">13:00</th>
-                        <th scope="col">15:00</th>
-                        <th scope="col">17:00</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Свобеден</td>
-                        <td>Свобеден</td>
-                        <td>Зает</td>
-                        <td>Свобеден</td>
-                        <td>Зает</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Свобеден</td>
-                        <td>Свобеден</td>
-                        <td>Зает</td>
-                        <td>Свобеден</td>
-                        <td>Зает</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Свобеден</td>
-                        <td>Свобеден</td>
-                        <td>Зает</td>
-                        <td>Свобеден</td>
-                        <td>Зает</td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-    </div>*@
-
-@* test 3 *@
-
-@using KTaseva.Models.Enums
 
 <div class="container">
     <div class="margin">
@@ -146,13 +10,6 @@
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Процедура</label>
                 <select class="form-control" asp-for="@Model.Procedure" asp-items="Html.GetEnumSelectList<Procedures>()"></select>
-                @*<select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>*@
             </div>
 
             <fieldset class="form-group row">
@@ -174,25 +31,14 @@
             </fieldset>
 
             <div class="form-group">
-                <label>Дата</label>
-                <input id="date" type="date" class="form-control" asp-for="@Model.Date">
-            </div>
-            <div class="form-group" id="formHour">
-                <label>Избери свобеден час</label>
-                <div class="row">
-                    <ul class="time-slot col">
-                        <li class="time-slot-item">09:00</li>
-                        <li class="time-slot-item">11:00</li>
-                        <li class="time-slot-item">13:00</li>
-                        <li class="time-slot-item">15:00</li>
-                        <li class="time-slot-item">17:00</li>
-                    </ul>
-                </div>
+                <label>Избери дата и час</label>
+                <div id="busyId"></div>
+                <input class="form-control" asp-for="@Model.Date" id="datetimepicker" type="text" />
             </div>
             <hr />
             <div class="form-group">
                 <div class="col-sm-10 col-sm-push-2">
-                    <input type="submit" value="Добави" class="btn btn-info" />
+                    <input type="submit" value="Запази" class="btn btn-info" />
                     <a asp-controller="Home" asp-action="Index" class="btn btn-danger">Назад</a>
                 </div>
             </div>
@@ -200,11 +46,102 @@
     </div>
 </div>
 
-<script>
-    let get = document.getElementById("date");
-    get.addEventListener("input", test);
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
-    function test() {
-        console.log(get.value);
-    }
+<link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css" />
+<script src="/jquery.js"></script>
+<script src="/build/jquery.datetimepicker.full.min.js"></script>
+
+<input type="hidden" asp-for="@Model.BusyAppointment" id="GetBusy" />
+
+
+<script>
+    var getDateTime = [];
+    var currentData
+    //var dates = [];
+    //var hours = [];
+
+    var cDate;
+    var cHour;
+
+
+    let k = document.getElementById("GetBusy").value;
+    getDateTime = $.parseJSON(k);
+
+    //getDateTime.forEach(date => {
+    //    var splits = date.split(' ');
+
+    //    dates.push(splits[0]);
+    //    hours.push(splits[1]);
+    //});
+
+    $('#datetimepicker').datetimepicker({
+        allowTimes: [
+            '09:00',
+            '11:00',
+            '13:00',
+            '15:00',
+            '17:00'
+        ],
+        disabledDates: '2020/04/12',
+        formatDate: 'Y/m/d'
+    });
+    $.datetimepicker.setLocale('bg');
+
+    let isCreatedSpan = true;
+    let currentD;
+    let arr = [];
+
+    var div = document.getElementById("busyId");
+    var span = document.createElement("span");
+    var span2 = document.createElement("span");
+    span.setAttribute("class", "badge badge-warning");
+    span2.setAttribute("class", "badge badge-danger");
+
+
+    $("#datetimepicker").change(function () {
+        currentData = $("#datetimepicker").val();
+        let split = currentData.split(' ');
+        cDate = split[0];
+        cHour = split[1];
+
+        getDateTime.forEach(x => {
+            let datesHours = x.split(' ');
+            let d = datesHours[0];
+            let h = datesHours[1];
+
+            if (d === cDate) {
+                if (!arr.hasOwnProperty(d)) {
+                    arr[d] = new Array();
+                    arr[d].push(h);
+                }
+                else if (!arr[d].includes(h)) {
+                    arr[d].push(h);
+                }
+
+            }
+        });
+
+        if (currentD !== cDate) {
+            currentD = cDate;
+
+            for (const [key, value] of Object.entries(arr)) {
+                if (key === cDate) {
+                    span.textContent = "Заети часове:";
+                    span2.textContent = value;
+                    div.appendChild(span);
+                    div.appendChild(span2);
+                }
+                else if (!arr.hasOwnProperty(cDate)) {
+                    span.textContent = '';
+                    span2.textContent = '';
+                }
+            }
+        }
+    })
+
+
+
 </script>
+
+

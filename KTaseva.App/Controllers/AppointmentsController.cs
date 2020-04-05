@@ -25,7 +25,8 @@ namespace KTaseva.App.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = this.appointmentService.GetBusyAppointment();
+            return View(model);
         }
 
         [HttpPost]

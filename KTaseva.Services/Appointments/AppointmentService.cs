@@ -1,10 +1,9 @@
 ﻿using KTaseva.Data;
 using KTaseva.Models;
-using KTaseva.Models.Enums;
 using KTaseva.ViewModels.Appointments;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace KTaseva.Services.Appointments
 {
@@ -25,11 +24,34 @@ namespace KTaseva.Services.Appointments
                 NailPolish = model.NailPolish,
                 Date = model.Date,
                 UserId = userId,
-                Hour = "09:00"
             };
 
             this.db.Appointments.Add(appointment);
             this.db.SaveChanges();
+        }
+
+        public AppointmentInputModel GetBusyAppointment()
+        {
+            var busyAppointment = this.db.Appointments
+                .Select(x => x.Date)
+                .OrderBy(x => x.Date)
+                .ThenBy(x => x.Hour)
+                .ToList();
+
+            var busy = busyAppointment
+                .Select(x => x.ToString("yyyy/MM/dd HH:mm")
+                .Replace('.', '/'))
+                .ToArray();
+
+            var json = JsonConvert.SerializeObject(busy);
+
+            var model = new AppointmentInputModel
+            {
+                Date = DateTime.UtcNow,
+                BusyAppointment = json
+            };
+
+            return model;
         }
     }
 }
