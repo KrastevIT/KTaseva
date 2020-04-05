@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using KTaseva.Models;
+﻿using KTaseva.Models;
 using KTaseva.Services.Appointments;
 using KTaseva.ViewModels.Appointments;
 using Microsoft.AspNetCore.Identity;
