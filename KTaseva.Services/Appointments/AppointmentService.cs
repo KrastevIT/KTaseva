@@ -16,8 +16,17 @@ namespace KTaseva.Services.Appointments
             this.db = db;
         }
 
-        public void Add(AppointmentInputModel model, string userId)
+        public bool Add(AppointmentInputModel model, string userId)
         {
+            var isExist = this.db.Appointments
+                .Select(x => x.Date)
+                .Contains(model.Date);
+
+            if (isExist)
+            {
+                return false;
+            }
+
             var appointment = new Appointment
             {
                 Procedure = model.Procedure,
@@ -28,6 +37,7 @@ namespace KTaseva.Services.Appointments
 
             this.db.Appointments.Add(appointment);
             this.db.SaveChanges();
+            return true;
         }
 
         public AppointmentInputModel GetBusyAppointment()

@@ -1,0 +1,57 @@
+﻿@model AppointmentInputModel
+
+
+
+<div class="container col-md-4">
+    <h2 class="text-center">Запази час</h2>
+    <form asp-area="" asp-controller="Appointments" asp-action="Add" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Процедура</label>
+            <select class="form-control" asp-for="@Model.Procedure" asp-items="Html.GetEnumSelectList<Procedures>()"></select>
+        </div>
+
+        <fieldset class="form-group row">
+            <label class="col-sm-10">Имате ли стар лак за махане</label>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" asp-for="@Model.NailPolish" name="NailPolish" id="gridRadios1" value="Да" checked>
+                        Да
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" asp-for="@Model.NailPolish" name="NailPolish" id="gridRadios2" value="Не">
+                        Не
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <label>Избери дата и час</label>
+            <div id="busyId"></div>
+            <input class="form-control" asp-for="@Model.Date" id="datetimepicker" type="text" />
+            @if (ViewData["error"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @this.ViewData["error"]
+                </div>
+            }
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="text-center">
+                <input type="submit" value="Запази" class="btn btn-info btn-sm" />
+                <a asp-controller="Home" asp-action="Index" class="btn btn-danger btn-sm">Назад</a>
+            </div>
+        </div>
+        <input type="hidden" asp-for="@Model.BusyAppointment" id="GetBusy" />
+    </form>
+</div>
+
+@*DateTimePicker *@
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/css/jquery.datetimepicker.css" />
+<script src="~/js/jquery.js"></script>
+<script src="/build/jquery.datetimepicker.full.min.js"></script>
+<script src="/js/calendar.js"></script>

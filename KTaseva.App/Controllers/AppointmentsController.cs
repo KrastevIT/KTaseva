@@ -19,7 +19,7 @@ namespace KTaseva.App.Controllers
             this.userManager = userManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Add()
         {
             var model = this.appointmentService.GetBusyAppointment();
             return View(model);
@@ -29,7 +29,12 @@ namespace KTaseva.App.Controllers
         public IActionResult Add(AppointmentInputModel model)
         {
             var userId = this.userManager.GetUserId(this.User);
-            this.appointmentService.Add(model, userId);
+            var isValid = this.appointmentService.Add(model, userId);
+            if (!isValid)
+            {
+                this.ViewData["error"] = $"Часът в {model.Date.Hour}:00 е зает!";
+                return View(model);
+            }
             return RedirectToAction("Index", "Home");
         }
     }
