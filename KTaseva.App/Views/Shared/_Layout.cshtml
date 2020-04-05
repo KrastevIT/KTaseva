@@ -1,6 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]KTaseva</title>
@@ -29,10 +33,28 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Appointments" asp-action="Add">Запази Час</a>
                         </li>
-                        <li class="nav-item">
-                            <partial name="_LoginPartial" />
-                        </li>
                     </ul>
+
+                    <div class="justify-content-end" id="navigation">
+                        <ul class="navbar-nav">
+                            <li class="nav-item p-0">
+                                <a class="nav-link" rel="tooltip" title="Последвай ме във Facebook" data-placement="bottom" href="https://www.facebook.com/KTaseva.Art" target="_blank">
+                                    <i class="fab fa-facebook-square"></i>
+                                    <p class="d-lg-none d-xl-none">Facebook</p>
+                                </a>
+                            </li>
+                            <li class="nav-item p-0">
+                                <a class="nav-link" rel="tooltip" title="Последвай ме в Instagram" data-placement="bottom" href="https://www.instagram.com/ktaseva_art/?igshid=cfhskj3xibm1&fbclid=IwAR3QvjQv3A61xt1QujxsgVsAMZIDqIOyHDU4-WNnt3T5Hq_sghjyamoiF5k" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                    <p class="d-lg-none d-xl-none">Instagram</p>
+                                </a>
+                            </li>
+                            <li class="nav-item p-0">
+                                <partial name="_LoginPartial" />
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </nav>
