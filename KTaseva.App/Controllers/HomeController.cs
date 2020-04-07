@@ -1,20 +1,23 @@
-﻿using KTaseva.App.Models;
+﻿using KTaseva.Services.Procedures;
+using KTaseva.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
 namespace KTaseva.App.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
-        {
+        private readonly IProcedureService procedureService;
 
+        public HomeController(IProcedureService procedureService)
+        {
+            this.procedureService = procedureService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var procedures = this.procedureService.All();
+            return View(procedures);
         }
 
         public IActionResult Privacy()

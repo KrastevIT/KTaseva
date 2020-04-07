@@ -1,9 +1,8 @@
 ﻿using KTaseva.Data;
+using KTaseva.Services.Mapping;
 using KTaseva.ViewModels.Photos;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace KTaseva.Services.Photos
 {
@@ -18,14 +17,7 @@ namespace KTaseva.Services.Photos
 
         public IEnumerable<PhotoViewModel> GetAllPhotos()
         {
-            var photos = this.db.Photos.ToList();
-            var models = new List<PhotoViewModel>();
-            foreach (var photo in photos)
-            {
-                var model = new PhotoViewModel { Url = photo.Url };
-                models.Add(model);
-            }
-
+            var models = this.db.Photos.To<PhotoViewModel>().ToList();
             return models;
         }
     }

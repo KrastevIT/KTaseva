@@ -4,7 +4,7 @@ using System;
 
 namespace KTaseva.ViewModels.Procedures
 {
-    public class ProcedureViewModel : IMapFrom<Procedure>, IMapTo<Procedure>
+    public class ProcedureViewModel : IMapFrom<Procedure>
     {
         public string Name { get; set; }
 

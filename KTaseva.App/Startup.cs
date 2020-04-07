@@ -1,6 +1,5 @@
 using CloudinaryDotNet;
 using KTaseva.App.Common;
-using KTaseva.App.Models;
 using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.Services.Admin;
@@ -9,6 +8,7 @@ using KTaseva.Services.Cloudinary;
 using KTaseva.Services.Mapping;
 using KTaseva.Services.Photos;
 using KTaseva.Services.Procedures;
+using KTaseva.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
