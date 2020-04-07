@@ -21,7 +21,6 @@ namespace KTaseva.App.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Add(AdminProcedureInputModel model)
         {
-
             if (!ModelState.IsValid)
             {
                 return View(model);
