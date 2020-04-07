@@ -1,11 +1,13 @@
 ﻿using KTaseva.Models;
 using KTaseva.Services.Appointments;
 using KTaseva.ViewModels.Appointments;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KTaseva.App.Controllers
 {
+    [Authorize]
     public class AppointmentsController : Controller
     {
         private readonly IAppointmentService appointmentService;
