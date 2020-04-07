@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTaseva.Models", "KTaseva.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTaseva.App", "KTaseva.App\KTaseva.App.csproj", "{4DD52BF5-5AA0-4FFC-9591-1A323CDF15B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTaseva.Services", "KTaseva.Services\KTaseva.Services.csproj", "{02391DD1-B1E7-411F-BA34-D23BAE8BBBE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTaseva.Services", "KTaseva.Services\KTaseva.Services.csproj", "{02391DD1-B1E7-411F-BA34-D23BAE8BBBE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTaseva.ViewModels", "KTaseva.ViewModels\KTaseva.ViewModels.csproj", "{338158E5-F15D-40B8-B72A-DE7634BA6545}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTaseva.ViewModels", "KTaseva.ViewModels\KTaseva.ViewModels.csproj", "{338158E5-F15D-40B8-B72A-DE7634BA6545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTaseva.Services.Mapping", "KTaseva.Services.Mapping\KTaseva.Services.Mapping.csproj", "{3366D288-846D-455E-AC16-561CDD4D1CCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{338158E5-F15D-40B8-B72A-DE7634BA6545}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{338158E5-F15D-40B8-B72A-DE7634BA6545}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{338158E5-F15D-40B8-B72A-DE7634BA6545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3366D288-846D-455E-AC16-561CDD4D1CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3366D288-846D-455E-AC16-561CDD4D1CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3366D288-846D-455E-AC16-561CDD4D1CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3366D288-846D-455E-AC16-561CDD4D1CCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

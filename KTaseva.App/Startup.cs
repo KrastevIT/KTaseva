@@ -1,11 +1,14 @@
 using CloudinaryDotNet;
 using KTaseva.App.Common;
+using KTaseva.App.Models;
 using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.Services.Admin;
 using KTaseva.Services.Appointments;
 using KTaseva.Services.Cloudinary;
+using KTaseva.Services.Mapping;
 using KTaseva.Services.Photos;
+using KTaseva.Services.Procedures;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
 
 namespace KTaseva.App
 {
@@ -57,6 +61,8 @@ namespace KTaseva.App
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -92,6 +98,7 @@ namespace KTaseva.App
             services.AddScoped<ICloudinaryService, CloudinaryService>();
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<IProcedureService, ProcedureService>();
         }
     }
 }

@@ -12,6 +12,8 @@ namespace KTaseva.Data
 
         public DbSet<Appointment> Appointments { get; set; }
 
+        public DbSet<Procedure> Procedures { get; set; }
+
         public DbSet<Photo> Photos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -4,14 +4,16 @@ using KTaseva.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KTaseva.Data.Migrations
 {
     [DbContext(typeof(KTasevaDbContext))]
-    partial class KTasevaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200407092921_AddProcedure")]
+    partial class AddProcedure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,9 +76,6 @@ namespace KTaseva.Data.Migrations
 
                     b.Property<TimeSpan>("Duration")
                         .HasColumnType("time");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
