@@ -18,7 +18,7 @@ namespace KTaseva.App.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var model = new AdminInputAddPhoto();
+            var model = new AdminPhotoInputModel();
             return View(model);
         }
     }

@@ -1,3 +1,4 @@
+using AutoMapper;
 using CloudinaryDotNet;
 using KTaseva.App.Common;
 using KTaseva.Data;

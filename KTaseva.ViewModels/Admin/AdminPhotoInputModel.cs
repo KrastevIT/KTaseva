@@ -2,7 +2,7 @@
 
 namespace KTaseva.ViewModels.Admin
 {
-    public class AdminInputAddPhoto
+    public class AdminPhotoInputModel
     {
         public IFormFile Photo { get; set; }
     }

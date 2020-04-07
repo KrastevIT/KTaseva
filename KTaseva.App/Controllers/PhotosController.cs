@@ -31,7 +31,7 @@ namespace KTaseva.App.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AdminInputAddPhoto model)
+        public async Task<IActionResult> Add(AdminPhotoInputModel model)
         {
             var userId = this.userManager.GetUserId(this.User);
             await this.cloudinaryService.UploadImageAsync(model.Photo, userId);

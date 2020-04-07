@@ -1,6 +1,11 @@
-﻿using KTaseva.Data;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using KTaseva.Data;
+using KTaseva.Models;
 using KTaseva.Services.Mapping;
+using KTaseva.ViewModels.Admin;
 using KTaseva.ViewModels.Procedures;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,6 +18,19 @@ namespace KTaseva.Services.Procedures
         public ProcedureService(KTasevaDbContext db)
         {
             this.db = db;
+        }
+
+        public void Add(AdminProcedureInputModel model)
+        {
+            var procedure = new Procedure
+            {
+                Name = model.Name,
+                Duration = model.Duration,
+                Price = model.Price
+            };
+
+            this.db.Procedures.Add(procedure);
+            this.db.SaveChanges();
         }
 
         public IEnumerable<ProcedureViewModel> All()

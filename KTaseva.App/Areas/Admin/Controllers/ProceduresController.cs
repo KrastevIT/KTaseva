@@ -1,15 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using KTaseva.Services.Procedures;
+using KTaseva.ViewModels.Admin;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KTaseva.App.Areas.Admin.Controllers
 {
     public class ProceduresController : AdminController
     {
+        private readonly IProcedureService procedureService;
+
+        public ProceduresController(IProcedureService procedureService)
+        {
+            this.procedureService = procedureService;
+        }
+
         public IActionResult Add()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(AdminProcedureInputModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            this.procedureService.Add(model);
+            this.ViewData["alert"] = $"Успешно добавихте нова процедура {model.Name}.";
             return View();
         }
     }
