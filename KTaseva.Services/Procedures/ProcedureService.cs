@@ -1,10 +1,8 @@
 ﻿using KTaseva.Data;
 using KTaseva.Services.Mapping;
 using KTaseva.ViewModels.Procedures;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace KTaseva.Services.Procedures
 {
@@ -17,11 +15,10 @@ namespace KTaseva.Services.Procedures
             this.db = db;
         }
 
-        public IEnumerable<T> All<T>()
+        public IEnumerable<ProcedureViewModel> All()
         {
-            var procedures = this.db.Procedures.To<T>().ToList();
-
-            return null;
+            var models = this.db.Procedures.To<ProcedureViewModel>().ToList();
+            return models;
         }
     }
 }

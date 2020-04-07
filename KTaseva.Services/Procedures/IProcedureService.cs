@@ -5,6 +5,6 @@ namespace KTaseva.Services.Procedures
 {
     public interface IProcedureService
     {
-        IEnumerable<T> All<T>();
+        IEnumerable<ProcedureViewModel> All();
     }
 }
