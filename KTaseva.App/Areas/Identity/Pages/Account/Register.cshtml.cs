@@ -46,33 +46,33 @@ namespace KTaseva.App.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Моля, въведете имейл адрес")]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Моля, въведете име")]
             [MinLength(2)]
             [MaxLength(50)]
             public string FirstName { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Моля, въведете фамилия")]
             [MinLength(2)]
             [MaxLength(50)]
             public string LastName { get; set; }
 
+            [Required(ErrorMessage = "Моля, въведете телефонен номер")]
             [Phone]
             public string PhoneNumber { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Моля, въведете парола")]
+            [StringLength(100, ErrorMessage = "Паролата трябва да е поне {2} символа.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Потвърдете парола")]
+            [Compare("Password", ErrorMessage = "Паролата не съвпада.")]
             public string ConfirmPassword { get; set; }
         }
 
