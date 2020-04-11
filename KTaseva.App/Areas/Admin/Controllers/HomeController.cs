@@ -12,19 +12,16 @@ namespace KTaseva.App.Areas.Admin.Controllers
     public class HomeController : AdminController
     {
         private readonly IAdminService adminService;
-        private readonly UserManager<User> userManager;
 
-        public HomeController(IAdminService adminService, UserManager<User> userManager)
+        public HomeController(IAdminService adminService)
         {
             this.adminService = adminService;
-            this.userManager = userManager;
         }
 
         public IActionResult Index()
         {
-            var userId = this.userManager.GetUserId(this.User);
-            var models = this.adminService.GetAppointment(userId);
-            return View();
+            var models = this.adminService.GetAppointment();
+            return View(models);
         }
     }
 }

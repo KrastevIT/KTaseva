@@ -5,6 +5,6 @@ namespace KTaseva.Services.Admin
 {
     public interface IAdminService
     {
-        IEnumerable<AdminAppointmentViewModel> GetAppointment(string userId);
+        IEnumerable<AdminAppointmentViewModel> GetAppointment();
     }
 }
