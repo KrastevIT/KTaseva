@@ -6,11 +6,13 @@ namespace KTaseva.Models
     {
         public int Id { get; set; }
 
-        public int Procedure { get; set; }
+        public string Procedure { get; set; }
 
         public string NailPolish { get; set; }
 
         public DateTime Date { get; set; }
+
+        public TimeSpan Hour { get; set; }
 
         public string UserId { get; set; }
 

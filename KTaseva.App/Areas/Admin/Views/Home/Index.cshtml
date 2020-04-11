@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<AdminAppointmentViewModel>
 
 <div class="container">
     <h1 class="text-center">Записани часове</h1>
@@ -14,21 +14,22 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-            </tr>
+            @{
+                int count = 0;
+            }
+            @foreach (var appointment in Model)
+            {
+                count++;
+
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@appointment.FirstName</td>
+                    <td>@appointment.LastName</td>
+                    <td>@appointment.Procedure</td>
+                    <td>@appointment.Date</td>
+                    <td>@appointment.Hour</td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
