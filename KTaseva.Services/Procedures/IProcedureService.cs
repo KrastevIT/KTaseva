@@ -1,5 +1,6 @@
 ﻿using KTaseva.ViewModels.Admin;
 using KTaseva.ViewModels.Procedures;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
 namespace KTaseva.Services.Procedures
@@ -10,5 +11,6 @@ namespace KTaseva.Services.Procedures
 
         IEnumerable<ProcedureViewModel> All();
 
+        List<SelectListItem> GetProceduresDropDownList();
     }
 }

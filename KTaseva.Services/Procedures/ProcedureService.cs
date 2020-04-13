@@ -1,11 +1,9 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using KTaseva.Data;
+﻿using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.Services.Mapping;
 using KTaseva.ViewModels.Admin;
 using KTaseva.ViewModels.Procedures;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -37,6 +35,23 @@ namespace KTaseva.Services.Procedures
         {
             var models = this.db.Procedures.To<ProcedureViewModel>().ToList();
             return models;
+        }
+
+        public List<SelectListItem> GetProceduresDropDownList()
+        {
+            var procedureItems = new List<SelectListItem>();
+            var procedures = this.db.Procedures.ToList();
+
+            foreach (var procedure in procedures)
+            {
+                var item = new SelectListItem
+                {
+                    Text = procedure.Name
+                };
+                procedureItems.Add(item);
+            }
+
+            return procedureItems;
         }
     }
 }

@@ -1,11 +1,7 @@
 ﻿using KTaseva.Data;
-using KTaseva.Models;
-using KTaseva.Services.Mapping;
 using KTaseva.ViewModels.Admin;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace KTaseva.Services.Admin
 {

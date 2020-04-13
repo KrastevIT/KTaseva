@@ -58,7 +58,7 @@ namespace KTaseva.Services.Appointments
             var model = new AppointmentInputModel
             {
                 Date = DateTime.UtcNow,
-                BusyAppointment = json
+                BusyAppointment = json,
             };
 
             return model;

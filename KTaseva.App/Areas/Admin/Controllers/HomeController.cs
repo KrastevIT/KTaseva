@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using KTaseva.Models;
-using KTaseva.Services.Admin;
-using Microsoft.AspNetCore.Identity;
+﻿using KTaseva.Services.Admin;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KTaseva.App.Areas.Admin.Controllers
