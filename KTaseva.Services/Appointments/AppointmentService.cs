@@ -18,20 +18,12 @@ namespace KTaseva.Services.Appointments
 
         public bool Add(AppointmentInputModel model, string userId)
         {
-            var isExist = this.db.Appointments
-                .Select(x => x.Date)
-                .Contains(model.Date);
-
-            if (isExist)
-            {
-                return false;
-            }
-
             var appointment = new Appointment
             {
                 Procedure = model.Procedure,
                 NailPolish = model.OldPolish,
                 Date = model.Date,
+                Hour = model.Hour,
                 UserId = userId,
             };
 
@@ -66,7 +58,7 @@ namespace KTaseva.Services.Appointments
         public AppointmentInputModel GetFreeAppointment()
         {
             var busyAppointment = this.db.Appointments
-               .Select(x => x.Date.ToString("d/MM/yyyy HH:mm"))
+               .Select(x => x.Date.ToString("d/MM/yyyy ") + x.Hour)
                .ToList();
 
             var jsonAppointment = JsonConvert.SerializeObject(busyAppointment);

@@ -16,13 +16,13 @@
             <div class="col-sm-10">
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="radio" asp-for="@Model.OldPolish" name="NailPolish" id="gridRadios1" value="Да" checked>
+                        <input class="form-check-input" type="radio" asp-for="@Model.OldPolish" name="OldPolish" id="gridRadios1" value="Да" checked>
                         Да
                     </label>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="radio" asp-for="@Model.OldPolish" name="NailPolish" id="gridRadios2" value="Не">
+                        <input class="form-check-input" type="radio" asp-for="@Model.OldPolish" name="OldPolish" id="gridRadios2" value="Не">
                         Не
                     </label>
                 </div>
@@ -82,18 +82,40 @@
     let getFreeAppointment = document.getElementById("GetFree").value;
     let freeAppointment = $.parseJSON(getFreeAppointment);
 
-    let freeHours;
+    let freeDic = [];
+
+    freeAppointment.forEach(x => {
+        let split = x.split(' ');
+        let d = split[0];
+        let h = split[1];
+
+        if (!freeDic.hasOwnProperty(d)) {
+            freeDic[d] = new Array();
+            freeDic[d].push(h);
+        }
+        else if (!freeDic[d].includes(h)) {
+            freeDic[d].push(h);
+        }
+    });
 
     $("#datetimepicker").change(function () {
         currentData = $("#datetimepicker").val()
 
-        freeAppointment.forEach(x => {
-            if (x.includes(currentData)) {
-                let split = x.split(' ');
-                freeHours = split[1];
+        if (freeDic.hasOwnProperty(currentData)) {
 
-                time.datetimepicker('setOptions', { allowTimes: [freeHours] });
-            }
-        });
+            let freeHours = freeDic[currentData];
+            time.datetimepicker('setOptions', { allowTimes: freeHours });
+        }
+        else {
+            time.datetimepicker('setOptions', {
+                allowTimes:
+                    [
+                        "09:00", "09:30",
+                        "10:00", "10:30",
+                        "11:00", "11:30",
+                    ]
+            });
+        }
+
     });
 </script>
