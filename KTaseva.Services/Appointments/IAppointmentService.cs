@@ -7,5 +7,7 @@ namespace KTaseva.Services.Appointments
         bool Add(AppointmentInputModel model, string userId);
 
         AppointmentInputModel GetBusyAppointment();
+
+        AppointmentInputModel GetFreeAppointment();
     }
 }

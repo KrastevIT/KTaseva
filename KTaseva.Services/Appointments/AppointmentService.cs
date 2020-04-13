@@ -53,12 +53,27 @@ namespace KTaseva.Services.Appointments
                 .Replace('.', '/'))
                 .ToArray();
 
-            var json = JsonConvert.SerializeObject(busy);
+            var busyJson = JsonConvert.SerializeObject(busy);
 
             var model = new AppointmentInputModel
             {
-                Date = DateTime.UtcNow,
-                BusyAppointment = json,
+                BusyAppointment = busyJson,
+            };
+
+            return model;
+        }
+
+        public AppointmentInputModel GetFreeAppointment()
+        {
+            var busyAppointment = this.db.Appointments
+               .Select(x => x.Date.ToString("d/MM/yyyy HH:mm"))
+               .ToList();
+
+            var jsonAppointment = JsonConvert.SerializeObject(busyAppointment);
+
+            var model = new AppointmentInputModel
+            {
+               FreeAppointment = jsonAppointment
             };
 
             return model;

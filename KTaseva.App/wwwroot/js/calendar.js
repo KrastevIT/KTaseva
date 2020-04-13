@@ -7,15 +7,11 @@ var cHour;
 
 let k = document.getElementById("GetBusy").value;
 getDateTime = $.parseJSON(k);
+console.log(getDateTime);
+
 
 $('#datetimepicker').datetimepicker({
-    allowTimes: [
-        '09:00',
-        '11:00',
-        '13:00',
-        '15:00',
-        '17:00'
-    ],
+    timepicker: false,
     disabledDates: '2020/04/12',
     formatDate: 'Y/m/d'
 });

@@ -27,7 +27,9 @@ namespace KTaseva.App.Controllers
 
         public IActionResult Add()
         {
-            var model = this.appointmentService.GetBusyAppointment();
+            //var model = this.appointmentService.GetBusyAppointment();
+            var model = this.appointmentService.GetFreeAppointment();
+
             model.Procedures = this.procedureService.GetProceduresDropDownList();
             return View(model);
         }
