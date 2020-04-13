@@ -30,7 +30,7 @@ namespace KTaseva.Services.Appointments
             var appointment = new Appointment
             {
                 Procedure = model.Procedure,
-                NailPolish = model.NailPolish,
+                NailPolish = model.OldPolish,
                 Date = model.Date,
                 UserId = userId,
             };

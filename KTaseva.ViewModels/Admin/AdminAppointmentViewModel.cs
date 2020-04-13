@@ -8,10 +8,14 @@ namespace KTaseva.ViewModels.Admin
 
         public string LastName { get; set; }
 
+        public string PhoneNumber { get; set; }
+
         public string Procedure { get; set; }
+
+        public string OldPolish { get; set; }
 
         public string Date { get; set; }
 
-        public TimeSpan Hour { get; set; }
+        public string Hour { get; set; }
     }
 }

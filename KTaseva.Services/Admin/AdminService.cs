@@ -28,9 +28,11 @@ namespace KTaseva.Services.Admin
                 {
                     FirstName = user.FirstName,
                     LastName = user.LastName,
+                    PhoneNumber = user.PhoneNumber,
                     Procedure = appointment.Procedure,
+                    OldPolish = appointment.NailPolish,
                     Date = appointment.Date.ToShortDateString(),
-                    Hour = appointment.Hour
+                    Hour = appointment.Date.ToShortTimeString()
                 });
             }
 

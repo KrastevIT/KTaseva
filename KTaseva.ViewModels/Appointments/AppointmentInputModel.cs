@@ -8,7 +8,7 @@ namespace KTaseva.ViewModels.Appointments
     {
         public string Procedure { get; set; }
 
-        public string NailPolish { get; set; }
+        public string OldPolish { get; set; }
 
         public DateTime Date { get; set; }
 
