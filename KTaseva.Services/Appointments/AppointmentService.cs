@@ -1,9 +1,11 @@
 ﻿using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.ViewModels.Appointments;
-using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace KTaseva.Services.Appointments
 {
@@ -20,11 +22,11 @@ namespace KTaseva.Services.Appointments
         {
             var appointment = new Appointment
             {
-                Procedure = model.Procedure,
                 NailPolish = model.OldPolish,
                 Date = model.Date,
                 Hour = model.Hour,
                 UserId = userId,
+                ProcedureId = int.Parse(model.ProcedureId)
             };
 
             this.db.Appointments.Add(appointment);
@@ -32,43 +34,51 @@ namespace KTaseva.Services.Appointments
             return true;
         }
 
-        public AppointmentInputModel GetBusyAppointment()
+        public List<string> GetFreeAppointmentByDate(string date, string procedureId)
         {
-            var busyAppointment = this.db.Appointments
-                .Select(x => x.Date)
-                .OrderBy(x => x.Date)
-                .ThenBy(x => x.Hour)
+            var all = new List<TimeSpan>();
+            var time = TimeSpan.FromHours(9);
+
+            while (!all.Contains(TimeSpan.FromHours(18)))
+            {
+                all.Add(time);
+                time += TimeSpan.FromMinutes(30);
+            }
+
+            var free = new List<string>();
+            var currentDate = DateTime.Parse(date);
+
+            var procedureDuration = this.db.Procedures
+                .Where(x => x.Id == int.Parse(procedureId))
+                .Select(x => x.Duration)
+                .FirstOrDefault();
+
+            var busyHours = this.db.Appointments
+                .Where(x => x.Date == currentDate)
+                .Select(x => x.Hour)
                 .ToList();
 
-            var busy = busyAppointment
-                .Select(x => x.ToString("yyyy/MM/dd HH:mm")
-                .Replace('.', '/'))
-                .ToArray();
+            var thirty = TimeSpan.FromMinutes(30);
+            var start = TimeSpan.FromHours(9);
 
-            var busyJson = JsonConvert.SerializeObject(busy);
-
-            var model = new AppointmentInputModel
+            foreach (var hour in busyHours)
             {
-                BusyAppointment = busyJson,
-            };
 
-            return model;
-        }
 
-        public AppointmentInputModel GetFreeAppointment()
-        {
-            var busyAppointment = this.db.Appointments
-               .Select(x => x.Date.ToString("d/MM/yyyy ") + x.Hour)
-               .ToList();
+                if (start != hour)
+                {
+                    free.Add(start.ToString());
+                }
+                else
+                {
+                    start += thirty;
+                }
+            }
 
-            var jsonAppointment = JsonConvert.SerializeObject(busyAppointment);
 
-            var model = new AppointmentInputModel
-            {
-               FreeAppointment = jsonAppointment
-            };
+            ;
 
-            return model;
+            return free;
         }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace KTaseva.App.Controllers
 {
     [Authorize]
+    [Route("Appointments")]
     public class AppointmentsController : Controller
     {
         private readonly IAppointmentService appointmentService;
@@ -27,10 +28,11 @@ namespace KTaseva.App.Controllers
 
         public IActionResult Add()
         {
-            //var model = this.appointmentService.GetBusyAppointment();
-            var model = this.appointmentService.GetFreeAppointment();
+            var model = new AppointmentInputModel
+            {
+                Procedures = this.procedureService.GetProceduresDropDownList()
+            };
 
-            model.Procedures = this.procedureService.GetProceduresDropDownList();
             return View(model);
         }
 

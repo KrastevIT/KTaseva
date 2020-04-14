@@ -46,7 +46,8 @@ namespace KTaseva.Services.Procedures
             {
                 var item = new SelectListItem
                 {
-                    Text = procedure.Name + $" {procedure.Price}лв."
+                    Text = procedure.Name + $" {procedure.Price}лв.",
+                    Value = procedure.Id.ToString()
                 };
                 procedureItems.Add(item);
             }

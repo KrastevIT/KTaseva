@@ -1,6 +1,7 @@
 using AutoMapper;
 using CloudinaryDotNet;
 using KTaseva.App.Common;
+using KTaseva.App.Hubs;
 using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.Services.Admin;
@@ -42,6 +43,7 @@ namespace KTaseva.App
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSignalR();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -86,6 +88,8 @@ namespace KTaseva.App
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<AppointmentHub>("Appointments/Add");
+
                 endpoints.MapControllerRoute(
                    name: "areas",
                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");

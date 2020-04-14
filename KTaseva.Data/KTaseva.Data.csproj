@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200403090828_AddProceduresEnums.cs" />
     <Compile Remove="Migrations\20200403090828_AddProceduresEnums.Designer.cs" />
+    <Compile Remove="Migrations\20200413135247_AddRelProcedureAndAppointment.cs" />
+    <Compile Remove="Migrations\20200413135247_AddRelProcedureAndAppointment.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

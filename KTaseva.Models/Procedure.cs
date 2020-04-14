@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace KTaseva.Models
 {
@@ -11,5 +12,7 @@ namespace KTaseva.Models
         public TimeSpan Duration { get; set; }
 
         public decimal Price { get; set; }
+
+        public ICollection<Appointment> Appointments { get; set; } = new HashSet<Appointment>();
     }
 }
