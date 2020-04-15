@@ -4,6 +4,7 @@ My defense project for ASP.NET Core
 * ASP.NET Core 3.1
 * Entity Framework Core
 * AutoMapper
+* SignalR
 * DateTimePicker
 * CloudinaryDotNet
 * xUnit
