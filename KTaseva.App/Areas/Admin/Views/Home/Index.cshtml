@@ -13,6 +13,7 @@
                 <th scope="col">Стар лак</th>
                 <th scope="col">Дата</th>
                 <th scope="col">Час</th>
+                <th scope="col">Край</th>
             </tr>
         </thead>
         <tbody>
@@ -23,16 +24,17 @@
             {
                 count++;
 
-                <tr>
-                    <th scope="row">@count</th>
-                    <td>@appointment.FirstName</td>
-                    <td>@appointment.LastName</td>
-                    <td>@appointment.PhoneNumber</td>
-                    <td>@appointment.Procedure</td>
-                    <td>@appointment.OldPolish</td>
-                    <td>@appointment.Date</td>
-                    <td>@appointment.Hour</td>
-                </tr>
+            <tr>
+                <th scope="row">@count</th>
+                <td>@appointment.FirstName</td>
+                <td>@appointment.LastName</td>
+                <td>@appointment.PhoneNumber</td>
+                <td>@appointment.Procedure</td>
+                <td>@appointment.OldPolish</td>
+                <td>@appointment.Date</td>
+                <td>@appointment.Hour</td>
+                <td>@appointment.EndHour</td>
+            </tr>
             }
         </tbody>
     </table>

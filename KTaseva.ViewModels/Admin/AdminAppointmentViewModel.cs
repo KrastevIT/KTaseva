@@ -16,6 +16,8 @@ namespace KTaseva.ViewModels.Admin
 
         public string Date { get; set; }
 
-        public string Hour { get; set; }
+        public TimeSpan Hour { get; set; }
+
+        public TimeSpan EndHour { get; set; }
     }
 }

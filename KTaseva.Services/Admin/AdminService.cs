@@ -1,5 +1,6 @@
 ﻿using KTaseva.Data;
 using KTaseva.ViewModels.Admin;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,6 +18,7 @@ namespace KTaseva.Services.Admin
         public IEnumerable<AdminAppointmentViewModel> GetAppointment()
         {
             var appointments = this.db.Appointments
+                .Include(x => x.Procedure)
                 .ToList();
 
             var models = new List<AdminAppointmentViewModel>();
@@ -29,9 +31,11 @@ namespace KTaseva.Services.Admin
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     PhoneNumber = user.PhoneNumber,
+                    Procedure = appointment.Procedure.Name,
                     OldPolish = appointment.NailPolish,
                     Date = appointment.Date.ToShortDateString(),
-                    Hour = appointment.Date.ToShortTimeString()
+                    Hour = appointment.Hour,
+                    EndHour = appointment.Hour + appointment.Procedure.Duration
                 });
             }
 
