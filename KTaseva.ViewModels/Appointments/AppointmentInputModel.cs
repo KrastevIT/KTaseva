@@ -14,7 +14,7 @@ namespace KTaseva.ViewModels.Appointments
         [DataType(DataType.Date)]
         public DateTime Date { get; set; } = DateTime.Today.AddDays(-1);
 
-        public TimeSpan Hour { get; set; } = TimeSpan.FromHours(9);
+        public TimeSpan Hour { get; set; }
 
         public List<SelectListItem> Procedures { get; set; }
 

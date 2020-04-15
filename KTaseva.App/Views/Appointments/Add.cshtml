@@ -1,10 +1,8 @@
 ﻿@model AppointmentInputModel
 
-
 <div class="container col-md-4">
     <h2 class="text-center">Запази час</h2>
     <form asp-area="" asp-controller="Appointments" asp-action="Add" method="post" class="form-horizontal">
-
 
         <div class="form-group">
             <label for="exampleFormControlSelect1">Процедура</label>
@@ -32,6 +30,10 @@
             <label>Избери дата</label>
             <div id="busyId"></div>
             <input class="form-control" asp-for="@Model.Date" id="datetimepicker" type="text" />
+        </div>
+        <div class="form-group">
+            <label>Избери час</label>
+            <input class="form-control" asp-for="@Model.Hour" id="timepicker" type="text" />
             @if (ViewData["error"] != null)
             {
                 <div class="alert alert-danger" role="alert">
@@ -39,13 +41,6 @@
                 </div>
             }
         </div>
-
-        <div class="form-group">
-            <label>Избери час</label>
-            <input class="form-control" asp-for="@Model.Hour" id="timepicker" type="text" />
-        </div>
-
-
         <hr />
         <div class="form-group">
             <div class="text-center">
@@ -61,106 +56,5 @@
 <link rel="stylesheet" type="text/css" href="~/css/jquery.datetimepicker.css" />
 <script src="~/js/jquery.js"></script>
 <script src="/build/jquery.datetimepicker.full.min.js"></script>
-@*<script src="/js/calendar.js"></script>*@
-
-
 <script src="/lib/signalr/dist/browser/signalr.min.js"></script>
-
-<script>
-    let procedure = document.getElementById("procedureId")
-    procedure.addEventListener("change", GetProcedure);
-    let procedureId = procedure.value;
-
-    function GetProcedure() {
-        procedureId = procedure.value;
-    };
-
-    $('#datetimepicker').datetimepicker({
-        timepicker: false,
-        dayOfWeekStart: 1,
-        format: 'd.m.Y'
-    });
-    $.datetimepicker.setLocale('bg');
-    var time = $('#timepicker').datetimepicker({
-        datepicker: false,
-        format: 'H:i'
-    });
-
-    let connection =
-        new signalR.HubConnectionBuilder()
-            .withUrl("/Appointments/Add")
-            .build();
-    connection.start();
-
-    $("#datetimepicker").change(function () {
-        currentData = $("#datetimepicker").val()
-
-        connection.invoke("GetUpdateAppointment", currentData, procedureId);
-
-        connection.on("Get",
-            function (hours) {
-                time.datetimepicker('setOptions', {
-                    allowTimes: hours
-                });
-            });
-    });
-</script>
-
-
-
-
-
-@*<script>
-        $('#datetimepicker').datetimepicker({
-            timepicker: false,
-            dayOfWeekStart: 1,
-            format: 'd.m.Y'
-        });
-        $.datetimepicker.setLocale('bg');
-
-        var time = $('#timepicker').datetimepicker({
-            datepicker: false,
-            format: 'H:i'
-        });
-
-        let currentData;
-        let getFreeAppointment = document.getElementById("GetFree").value;
-        let freeAppointment = $.parseJSON(getFreeAppointment);
-
-        let freeDic = [];
-
-        freeAppointment.forEach(x => {
-            let split = x.split(' ');
-            let d = split[0];
-            let h = split[1];
-
-            if (!freeDic.hasOwnProperty(d)) {
-                freeDic[d] = new Array();
-                freeDic[d].push(h);
-            }
-            else if (!freeDic[d].includes(h)) {
-                freeDic[d].push(h);
-            }
-        });
-
-        $("#datetimepicker").change(function () {
-            currentData = $("#datetimepicker").val()
-
-            if (freeDic.hasOwnProperty(currentData)) {
-
-                let freeHours = freeDic[currentData];
-                time.datetimepicker('setOptions', { allowTimes: freeHours });
-            }
-            else {
-                time.datetimepicker('setOptions', {
-                    allowTimes:
-                        [
-                            "09:00", "09:30",
-                            "10:00", "10:30",
-                            "11:00", "11:30",
-                        ]
-                });
-            }
-
-        });
-    </script>*@
+<script src="/js/calendar.js"></script>

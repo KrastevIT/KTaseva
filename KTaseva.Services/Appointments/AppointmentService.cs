@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace KTaseva.Services.Appointments
 {
@@ -20,6 +19,36 @@ namespace KTaseva.Services.Appointments
 
         public bool Add(AppointmentInputModel model, string userId)
         {
+            var isExistHour = this.db.Appointments
+                .Where(x => x.Date == model.Date)
+                .Any(x => x.Hour == model.Hour);
+
+            var procedureDuration = this.db.Procedures
+                .Where(x => x.Id == int.Parse(model.ProcedureId))
+                .Select(x => x.Duration)
+                .FirstOrDefault();
+
+            var previous = this.db.Appointments
+                .OrderByDescending(x => x.Hour)
+                .Where(x => x.Date == model.Date && x.Hour < model.Hour)
+                .Select(x => x.Hour)
+                .FirstOrDefault();
+
+            var next = this.db.Appointments
+                .OrderBy(x => x.Hour)
+                .Where(x => x.Date == model.Date && x.Hour > model.Hour)
+                .Select(x => x.Hour)
+                .FirstOrDefault();
+
+            if (isExistHour || model.Hour + procedureDuration > next && next > TimeSpan.Zero)
+            {
+                return false;
+            }
+            else if (previous + procedureDuration > model.Hour)
+            {
+                return false;
+            }
+
             var appointment = new Appointment
             {
                 NailPolish = model.OldPolish,
@@ -53,30 +82,47 @@ namespace KTaseva.Services.Appointments
                 .Select(x => x.Duration)
                 .FirstOrDefault();
 
-            var busyHours = this.db.Appointments
+            var appointment = this.db.Appointments
                 .Where(x => x.Date == currentDate)
-                .Select(x => x.Hour)
+                .Include(x => x.Procedure)
+                .OrderBy(x => x.Date)
+                .ThenBy(x => x.Hour)
                 .ToList();
 
-            var thirty = TimeSpan.FromMinutes(30);
-            var start = TimeSpan.FromHours(9);
-
-            foreach (var hour in busyHours)
+            foreach (var app in appointment)
             {
-
-
-                if (start != hour)
+                all.RemoveAll(x => x == app.Hour);
+                if (app.Hour == TimeSpan.FromHours(18))
                 {
-                    free.Add(start.ToString());
+                    break;
                 }
-                else
+
+                var nextHour = app.Hour + app.Procedure.Duration;
+                var isBetweenDelete = all.FindAll(x => x > app.Hour && x < nextHour);
+                if (isBetweenDelete.Any(x => x == TimeSpan.Zero))
                 {
-                    start += thirty;
+                    var next = all.Find(x => x > nextHour);
+                    all[all.FindIndex(ind => ind.Equals(next))] = nextHour;
+                    continue;
+                }
+                isBetweenDelete.ForEach(x => all.Remove(x));
+            }
+
+            all = all.Distinct().ToList();
+
+            foreach (var hour in appointment
+                .Select(x => x.Hour)
+                .OrderByDescending(x => x.Hours))
+            {
+                var previous = all.FindLast(x => x < hour);
+
+                if (previous + procedureDuration > hour)
+                {
+                    all.Remove(previous);
                 }
             }
 
-
-            ;
+            all.ForEach(x => free.Add(x.ToString()));
 
             return free;
         }

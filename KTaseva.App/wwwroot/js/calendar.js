@@ -1,70 +1,54 @@
-﻿var getDateTime = [];
-var currentData
+﻿let procedure = document.getElementById("procedureId")
+procedure.addEventListener("change", GetProcedure);
+let procedureId = procedure.value;
 
-var cDate;
-var cHour;
+let connection =
+    new signalR.HubConnectionBuilder()
+        .withUrl("/Appointments/Add")
+        .build();
+connection.start();
 
-
-let k = document.getElementById("GetBusy").value;
-getDateTime = $.parseJSON(k);
-console.log(getDateTime);
-
+function GetProcedure() {
+    procedureId = procedure.value;
+    connection.invoke("GetUpdateAppointment", currentData, procedureId);
+};
 
 $('#datetimepicker').datetimepicker({
     timepicker: false,
-    disabledDates: '2020/04/12',
-    formatDate: 'Y/m/d'
+    dayOfWeekStart: 1,
+    format: 'd.m.Y'
 });
 $.datetimepicker.setLocale('bg');
-
-let isCreatedSpan = true;
-let currentD;
-let arr = [];
-
-var div = document.getElementById("busyId");
-var span = document.createElement("span");
-var span2 = document.createElement("span");
-span.setAttribute("class", "badge badge-warning");
-span2.setAttribute("class", "badge badge-danger");
-
+var time = $('#timepicker').datetimepicker({
+    datepicker: false,
+    format: 'H:i'
+});
 
 $("#datetimepicker").change(function () {
-    currentData = $("#datetimepicker").val();
-    let split = currentData.split(' ');
-    cDate = split[0];
-    cHour = split[1];
+    currentData = $("#datetimepicker").val()
 
-    getDateTime.forEach(x => {
-        let datesHours = x.split(' ');
-        let d = datesHours[0];
-        let h = datesHours[1];
+    connection.invoke("GetUpdateAppointment", currentData, procedureId);
 
-        if (d === cDate) {
-            if (!arr.hasOwnProperty(d)) {
-                arr[d] = new Array();
-                arr[d].push(h);
-            }
-            else if (!arr[d].includes(h)) {
-                arr[d].push(h);
-            }
 
+});
+
+connection.on("Get",
+    function (hours) {
+        if (hours.length > 0) {
+            time.datetimepicker('setOptions', {
+                allowTimes: hours
+            });
+        }
+        else {
+            time.datetimepicker('setOptions', {
+                allowTimes: ["00:00"]
+            });
         }
     });
 
-    if (currentD !== cDate) {
-        currentD = cDate;
 
-        for (const [key, value] of Object.entries(arr)) {
-            if (key === cDate) {
-                span.textContent = "Заети часове:";
-                span2.textContent = value;
-                div.appendChild(span);
-                div.appendChild(span2);
-            }
-            else if (!arr.hasOwnProperty(cDate)) {
-                span.textContent = '';
-                span2.textContent = '';
-            }
-        }
-    }
-})
+$("#timepicker").click(function () {
+    currentData = document.getElementById("datetimepicker").value;
+    connection.invoke("GetUpdateAppointment", currentData, procedureId);
+    console.log(currentData);
+});

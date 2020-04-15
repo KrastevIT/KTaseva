@@ -43,7 +43,8 @@ namespace KTaseva.App.Controllers
             var isValid = this.appointmentService.Add(model, userId);
             if (!isValid)
             {
-                this.ViewData["error"] = $"Часът в {model.Date.Hour}:00 е зает!";
+                this.ViewData["error"] = $"Часът в {model.Hour} току що беше запазен!";
+                model.Procedures = this.procedureService.GetProceduresDropDownList();
                 return View(model);
             }
             return RedirectToAction("Index", "Home");

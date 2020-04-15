@@ -1,8 +1,5 @@
 ﻿using KTaseva.Services.Appointments;
 using Microsoft.AspNetCore.SignalR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace KTaseva.App.Hubs
