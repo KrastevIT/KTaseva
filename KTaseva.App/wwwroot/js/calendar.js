@@ -13,9 +13,13 @@ function GetProcedure() {
     connection.invoke("GetUpdateAppointment", currentData, procedureId);
 };
 
+let disabledDates = document.getElementById("disabledDates").value;
+
 $('#datetimepicker').datetimepicker({
     timepicker: false,
     dayOfWeekStart: 1,
+    disabledDates: disabledDates,
+    formatDate: "d.m.Y",
     format: 'd.m.Y'
 });
 $.datetimepicker.setLocale('bg');

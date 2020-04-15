@@ -30,7 +30,8 @@ namespace KTaseva.App.Controllers
         {
             var model = new AppointmentInputModel
             {
-                Procedures = this.procedureService.GetProceduresDropDownList()
+                Procedures = this.procedureService.GetProceduresDropDownList(),
+                DisabledDates = this.appointmentService.GetDisabledDates()
             };
 
             return View(model);

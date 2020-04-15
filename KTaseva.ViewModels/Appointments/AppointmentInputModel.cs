@@ -18,5 +18,7 @@ namespace KTaseva.ViewModels.Appointments
 
         public List<SelectListItem> Procedures { get; set; }
 
+        public string DisabledDates { get; set; }
+
     }
 }

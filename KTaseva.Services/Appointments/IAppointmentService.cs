@@ -8,5 +8,7 @@ namespace KTaseva.Services.Appointments
         bool Add(AppointmentInputModel model, string userId);
 
         List<string> GetFreeAppointmentByDate(string date, string procedureId);
+
+        string GetDisabledDates();
     }
 }

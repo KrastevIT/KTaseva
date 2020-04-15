@@ -2,6 +2,7 @@
 using KTaseva.Models;
 using KTaseva.ViewModels.Appointments;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,6 +126,13 @@ namespace KTaseva.Services.Appointments
             all.ForEach(x => free.Add(x.ToString()));
 
             return free;
+        }
+
+        public string GetDisabledDates()
+        {
+            var json = JsonConvert.SerializeObject("16.04.2020");
+
+            return json;
         }
     }
 }
