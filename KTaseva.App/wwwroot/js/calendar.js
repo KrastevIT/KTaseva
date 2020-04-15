@@ -14,6 +14,7 @@ function GetProcedure() {
 };
 
 let disabledDates = document.getElementById("disabledDates").value;
+console.log(disabledDates);
 
 $('#datetimepicker').datetimepicker({
     timepicker: false,

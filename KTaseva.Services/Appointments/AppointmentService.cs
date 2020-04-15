@@ -130,7 +130,11 @@ namespace KTaseva.Services.Appointments
 
         public string GetDisabledDates()
         {
-            var json = JsonConvert.SerializeObject("16.04.2020");
+            var dates = this.db.DisableDates
+                .Select(x => x.DisabledDates.ToString("dd.MM.yyyy"))
+                .ToArray();
+
+            var json = JsonConvert.SerializeObject(dates);
 
             return json;
         }

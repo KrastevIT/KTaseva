@@ -1,4 +1,5 @@
 ﻿using KTaseva.Data;
+using KTaseva.Models;
 using KTaseva.ViewModels.Admin;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -40,6 +41,17 @@ namespace KTaseva.Services.Admin
             }
 
             return models;
+        }
+
+        public void AddDisableDate(AdminDisableDateInputModel model)
+        {
+            var disabledDate = new DisableDate
+            {
+                DisabledDates = model.DisabledDates
+            };
+
+            this.db.DisableDates.Add(disabledDate);
+            this.db.SaveChanges();
         }
     }
 }

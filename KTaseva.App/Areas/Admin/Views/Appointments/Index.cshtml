@@ -1,20 +1,20 @@
-﻿@model AdminDisableDate
-<div class="container">
-    <h1 class="text-center">Блокирай Дата</h1>
-</div>
-
-<form asp-area="" asp-controller="Appointments" asp-action="Add" method="post" class="form-horizontal">
-    <div class="form-group">
-        <label>Избери дата</label>
-        <div id="busyId"></div>
-        <input class="form-control" asp-for="@Model.DisabledDates" id="datetimepicker" type="text" />
+﻿@model AdminDisableDateInputModel
+    <div class="container col-md-4">
+        <h1 class="text-center">Блокирай Дата</h1>
+        <form asp-area="Admin" asp-controller="Appointments" asp-action="Add" method="post" class="form-horizontal">
+            <div class="form-group">
+                <label>Избери дата</label>
+                <div id="busyId"></div>
+                <input class="form-control" asp-for="@Model.DisabledDates" id="datetimepicker" type="text" />
+            </div>
+            <div class="form-group">
+                <div class="text-center">
+                    <input type="submit" value="Запази" class="btn btn-info btn-sm" />
+                    <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-danger btn-sm">Назад</a>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
-
-
-
-
-
 
 
 @*DateTimePicker *@
@@ -23,3 +23,11 @@
 <script src="~/js/jquery.js"></script>
 <script src="/build/jquery.datetimepicker.full.min.js"></script>
 <script src="/lib/signalr/dist/browser/signalr.min.js"></script>
+
+<script>
+    $('#datetimepicker').datetimepicker({
+        timepicker: false,
+        dayOfWeekStart: 1,
+        format: 'd.m.Y'
+    });
+</script>
