@@ -1,41 +1,47 @@
 ﻿@model IEnumerable<AdminAppointmentViewModel>
 
-<div class="container">
-    <h1 class="text-center">Записани часове</h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Име</th>
-                <th scope="col">Фамилия</th>
-                <th scope="col">Тел.номер</th>
-                <th scope="col">Процедура</th>
-                <th scope="col">Стар лак</th>
-                <th scope="col">Дата</th>
-                <th scope="col">Час</th>
-                <th scope="col">Край</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                int count = 0;
-            }
-            @foreach (var appointment in Model)
-            {
-                count++;
+    <a></a>
 
-            <tr>
-                <th scope="row">@count</th>
-                <td>@appointment.FirstName</td>
-                <td>@appointment.LastName</td>
-                <td>@appointment.PhoneNumber</td>
-                <td>@appointment.Procedure</td>
-                <td>@appointment.OldPolish</td>
-                <td>@appointment.Date</td>
-                <td>@appointment.Hour</td>
-                <td>@appointment.EndHour</td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</div>
+    <div class="container">
+        <h1 class="text-center">Записани часове</h1>
+        <div class="d-flex justify-content-center">
+            <a type="button" asp-area="Admin" asp-controller="Appointments" asp-action="Index" class="btn btn-warning btn-sm">Блокирай Дата</a>
+        </div>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Име</th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Тел.номер</th>
+                    <th scope="col">Процедура</th>
+                    <th scope="col">Стар лак</th>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Час</th>
+                    <th scope="col">Край</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int count = 0;
+                }
+                @foreach (var appointment in Model)
+                {
+                    count++;
+
+                    <tr>
+                        <th scope="row">@count</th>
+                        <td>@appointment.FirstName</td>
+                        <td>@appointment.LastName</td>
+                        <td>@appointment.PhoneNumber</td>
+                        <td>@appointment.Procedure</td>
+                        <td>@appointment.OldPolish</td>
+                        <td>@appointment.Date</td>
+                        <td>@appointment.Hour</td>
+                        <td>@appointment.EndHour</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

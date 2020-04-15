@@ -1,0 +1,25 @@
+﻿@model AdminDisableDate
+<div class="container">
+    <h1 class="text-center">Блокирай Дата</h1>
+</div>
+
+<form asp-area="" asp-controller="Appointments" asp-action="Add" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label>Избери дата</label>
+        <div id="busyId"></div>
+        <input class="form-control" asp-for="@Model.DisabledDates" id="datetimepicker" type="text" />
+    </div>
+</form>
+
+
+
+
+
+
+
+@*DateTimePicker *@
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/css/jquery.datetimepicker.css" />
+<script src="~/js/jquery.js"></script>
+<script src="/build/jquery.datetimepicker.full.min.js"></script>
+<script src="/lib/signalr/dist/browser/signalr.min.js"></script>
