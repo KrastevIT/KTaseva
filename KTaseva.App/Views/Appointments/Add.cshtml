@@ -34,6 +34,7 @@
         <div class="form-group">
             <label>Избери час</label>
             <input class="form-control" asp-for="@Model.Hour" id="timepicker" type="text" />
+            <span class="text-danger" asp-validation-for="@Model.Hour"></span>
             @if (ViewData["error"] != null)
             {
                 <div class="alert alert-danger" role="alert">
@@ -56,6 +57,6 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="~/css/jquery.datetimepicker.css" />
 <script src="~/js/jquery.js"></script>
-<script src="/build/jquery.datetimepicker.full.min.js"></script>
-<script src="/lib/signalr/dist/browser/signalr.min.js"></script>
-<script src="/js/calendar.js"></script>
+<script src="~/build/jquery.datetimepicker.full.min.js"></script>
+<script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
+<script src="~/js/calendar.js"></script>

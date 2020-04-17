@@ -40,6 +40,14 @@ namespace KTaseva.App.Controllers
         [HttpPost]
         public IActionResult Add(AppointmentInputModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                model.Procedures = this.procedureService.GetProceduresDropDownList();
+                model.DisabledDates = this.appointmentService.GetDisabledDates();
+
+                return View(model);
+            }
+
             var userId = this.userManager.GetUserId(this.User);
             var isValid = this.appointmentService.Add(model, userId);
             if (!isValid)
@@ -48,6 +56,7 @@ namespace KTaseva.App.Controllers
                 model.Procedures = this.procedureService.GetProceduresDropDownList();
                 return View(model);
             }
+
             return RedirectToAction("Index", "Home");
         }
     }
