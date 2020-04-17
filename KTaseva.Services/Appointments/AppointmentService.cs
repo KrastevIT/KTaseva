@@ -1,4 +1,5 @@
-﻿using KTaseva.Data;
+﻿using KTaseva.Common;
+using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.ViewModels.Appointments;
 using Microsoft.EntityFrameworkCore;
@@ -76,6 +77,11 @@ namespace KTaseva.Services.Appointments
 
         public List<string> GetFreeAppointmentByDate(string date, int procedureId)
         {
+            if (!this.db.Procedures.Any(x => x.Id == procedureId))
+            {
+                throw new InvalidOperationException(
+                    string.Format(ErrorMessages.InvalidProcedureId, procedureId));
+            }
             var all = new List<TimeSpan>();
             var time = TimeSpan.FromHours(9);
 

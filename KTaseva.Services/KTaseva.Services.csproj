@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KTaseva.Common\KTaseva.Common.csproj" />
     <ProjectReference Include="..\KTaseva.Data\KTaseva.Data.csproj" />
     <ProjectReference Include="..\KTaseva.ViewModels\KTaseva.ViewModels.csproj" />
     <PackageReference Include="Cloudinary.Core" Version="1.31.0" />

@@ -4,7 +4,6 @@ using KTaseva.Services.Appointments;
 using KTaseva.Tests.Configurations;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace KTaseva.Tests.Services.Appointments
@@ -182,6 +181,25 @@ namespace KTaseva.Tests.Services.Appointments
                 Assert.DoesNotContain("12:00:00", freeDates);
                 Assert.DoesNotContain("12:30:00", freeDates);
             }
+        }
+
+        [Theory]
+        [InlineData("27.04.2020", 3, 10)]
+        public void GetFreeAppointmentByDateReturnInvalid(string date, int procedureId, int hour)
+        {
+            var appointment = new Appointment
+            {
+                Id = 1,
+                Date = DateTime.Parse(date),
+                Hour = TimeSpan.FromHours(hour),
+                ProcedureId = procedureId
+            };
+
+            this.db.Appointments.Add(appointment);
+            this.db.SaveChanges();
+
+            Assert.Throws<InvalidOperationException>(()
+            => this.appointmentService.GetFreeAppointmentByDate(date, procedureId));
         }
     }
 }
