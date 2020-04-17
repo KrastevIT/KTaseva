@@ -15,7 +15,7 @@ namespace KTaseva.App.Hubs
 
         public async Task GetUpdateAppointment(string date, string procedureId)
         {
-            var freeHours = this.appointmentService.GetFreeAppointmentByDate(date, procedureId);
+            var freeHours = this.appointmentService.GetFreeAppointmentByDate(date, int.Parse(procedureId));
             await this.Clients.Caller.SendAsync("Get", freeHours);
         }
     }

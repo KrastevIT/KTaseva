@@ -8,7 +8,7 @@ namespace KTaseva.ViewModels.Appointments
     public class AppointmentInputModel
     {
         [Required]
-        public string ProcedureId { get; set; }
+        public int ProcedureId { get; set; }
 
         [Required]
         public string OldPolish { get; set; }

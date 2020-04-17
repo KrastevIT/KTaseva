@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace KTaseva.Services.Appointments
 {
@@ -25,7 +26,7 @@ namespace KTaseva.Services.Appointments
                 .Any(x => x.Hour == model.Hour);
 
             var procedureDuration = this.db.Procedures
-                .Where(x => x.Id == int.Parse(model.ProcedureId))
+                .Where(x => x.Id == model.ProcedureId)
                 .Select(x => x.Duration)
                 .FirstOrDefault();
 
@@ -50,13 +51,22 @@ namespace KTaseva.Services.Appointments
                 return false;
             }
 
+            if (!this.db.Procedures.Any(x => x.Id == model.ProcedureId)
+                || model.OldPolish != "Да"
+                && model.OldPolish != "Не"
+                || model.Hour < TimeSpan.FromHours(9)
+                || model.Hour > TimeSpan.FromHours(18)) 
+            {
+                return false;
+            }
+
             var appointment = new Appointment
             {
                 NailPolish = model.OldPolish,
                 Date = model.Date,
                 Hour = model.Hour,
                 UserId = userId,
-                ProcedureId = int.Parse(model.ProcedureId)
+                ProcedureId = model.ProcedureId
             };
 
             this.db.Appointments.Add(appointment);
@@ -64,7 +74,7 @@ namespace KTaseva.Services.Appointments
             return true;
         }
 
-        public List<string> GetFreeAppointmentByDate(string date, string procedureId)
+        public List<string> GetFreeAppointmentByDate(string date, int procedureId)
         {
             var all = new List<TimeSpan>();
             var time = TimeSpan.FromHours(9);
@@ -79,7 +89,7 @@ namespace KTaseva.Services.Appointments
             var currentDate = DateTime.Parse(date);
 
             var procedureDuration = this.db.Procedures
-                .Where(x => x.Id == int.Parse(procedureId))
+                .Where(x => x.Id == procedureId)
                 .Select(x => x.Duration)
                 .FirstOrDefault();
 
