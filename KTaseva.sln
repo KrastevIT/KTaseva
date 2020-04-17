@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTaseva.Services", "KTaseva
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTaseva.ViewModels", "KTaseva.ViewModels\KTaseva.ViewModels.csproj", "{338158E5-F15D-40B8-B72A-DE7634BA6545}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTaseva.Services.Mapping", "KTaseva.Services.Mapping\KTaseva.Services.Mapping.csproj", "{3366D288-846D-455E-AC16-561CDD4D1CCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTaseva.Services.Mapping", "KTaseva.Services.Mapping\KTaseva.Services.Mapping.csproj", "{3366D288-846D-455E-AC16-561CDD4D1CCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTaseva.Tests", "KTaseva.Tests\KTaseva.Tests.csproj", "{D68861E5-BCF3-47CF-AC77-00931E365832}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{3366D288-846D-455E-AC16-561CDD4D1CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3366D288-846D-455E-AC16-561CDD4D1CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3366D288-846D-455E-AC16-561CDD4D1CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D68861E5-BCF3-47CF-AC77-00931E365832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D68861E5-BCF3-47CF-AC77-00931E365832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D68861E5-BCF3-47CF-AC77-00931E365832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D68861E5-BCF3-47CF-AC77-00931E365832}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
