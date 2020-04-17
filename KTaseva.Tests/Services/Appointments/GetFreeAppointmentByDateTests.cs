@@ -102,5 +102,80 @@ namespace KTaseva.Tests.Services.Appointments
                 Assert.Contains("10:30:00", freeDates);
             }
         }
+
+        [Theory]
+        [InlineData("27.04.2020", 1, 10, 11)]
+        [InlineData("27.04.2020", 2, 10, 11)]
+        public void GetFreeAppointmentByDateWithTwoBusyTimeReturnCorrectly(string date, int procedureId, int oneHour, int twoHour)
+        {
+            var procedures = new List<Procedure>
+            {
+               new Procedure
+               {
+                   Id = 1,
+                   Duration = TimeSpan.FromMinutes(60)
+               },
+               new Procedure
+               {
+                   Id = 2,
+                   Duration = TimeSpan.FromMinutes(90)
+               },
+                new Procedure
+               {
+                   Id = 3,
+                   Duration = TimeSpan.FromMinutes(120)
+               }
+            };
+
+            var appointment = new List<Appointment>
+            {
+                new Appointment
+                {
+                    Id = 1,
+                    Date = DateTime.Parse(date),
+                    Hour = TimeSpan.FromHours(oneHour),
+                    ProcedureId = procedureId
+                },
+                new Appointment
+                {
+                    Id = 2,
+                    Date = DateTime.Parse(date),
+                    Hour = TimeSpan.FromHours(twoHour),
+                    ProcedureId = procedureId
+                }
+            };
+
+            this.db.Procedures.AddRange(procedures);
+            this.db.Appointments.AddRange(appointment);
+            this.db.SaveChanges();
+
+            var freeDates = this.appointmentService.GetFreeAppointmentByDate(date, procedureId);
+
+            if (procedureId == 1)
+            {
+                Assert.DoesNotContain("10:00:00", freeDates);
+                Assert.DoesNotContain("11:00:00", freeDates);
+                Assert.DoesNotContain("09:30:00", freeDates);
+                Assert.DoesNotContain("10:30:00", freeDates);
+                Assert.Contains("09:00:00", freeDates);
+                Assert.Contains("12:00:00", freeDates);
+            }
+            else if (procedureId == 2)
+            {
+                Assert.DoesNotContain("10:00:00", freeDates);
+                Assert.DoesNotContain("11:00:00", freeDates);
+                Assert.DoesNotContain("09:00:00", freeDates);
+                Assert.DoesNotContain("09:30:00", freeDates);
+                Assert.DoesNotContain("10:30:00", freeDates);
+                Assert.DoesNotContain("11:30:00", freeDates);
+                Assert.DoesNotContain("12:00:00", freeDates);
+            }
+            //else if (procedureId == 3)
+            //{
+            //    Assert.DoesNotContain("10:00:00", freeDates);
+            //    Assert.Contains("09:30:00", freeDates);
+            //    Assert.Contains("10:30:00", freeDates);
+            //}
+        }
     }
 }

@@ -55,7 +55,7 @@ namespace KTaseva.Services.Appointments
                 || model.OldPolish != "Да"
                 && model.OldPolish != "Не"
                 || model.Hour < TimeSpan.FromHours(9)
-                || model.Hour > TimeSpan.FromHours(18)) 
+                || model.Hour > TimeSpan.FromHours(18))
             {
                 return false;
             }
@@ -121,16 +121,10 @@ namespace KTaseva.Services.Appointments
 
             all = all.Distinct().ToList();
 
-            foreach (var hour in appointment
-                .Select(x => x.Hour)
-                .OrderByDescending(x => x.Hours))
+            foreach (var hour in appointment.Select(x => x.Hour))
             {
-                var previous = all.FindLast(x => x < hour);
-
-                if (previous + procedureDuration > hour)
-                {
-                    all.Remove(previous);
-                }
+                var previous = all.FindAll(x => x < hour && x > hour - procedureDuration);
+                previous.ForEach(x => all.RemoveAll(y => y == x));
             }
 
             all.ForEach(x => free.Add(x.ToString()));
