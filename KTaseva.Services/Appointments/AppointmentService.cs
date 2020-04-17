@@ -108,18 +108,9 @@ namespace KTaseva.Services.Appointments
                     break;
                 }
 
-                var nextHour = app.Hour + app.Procedure.Duration;
-                var isBetweenDelete = all.FindAll(x => x > app.Hour && x < nextHour);
-                if (isBetweenDelete.Any(x => x == TimeSpan.Zero))
-                {
-                    var next = all.Find(x => x > nextHour);
-                    all[all.FindIndex(ind => ind.Equals(next))] = nextHour;
-                    continue;
-                }
-                isBetweenDelete.ForEach(x => all.Remove(x));
+                var between = all.FindAll(x => x > app.Hour && x < app.Hour + app.Procedure.Duration);
+                between.ForEach(x => all.Remove(x));
             }
-
-            all = all.Distinct().ToList();
 
             foreach (var hour in appointment.Select(x => x.Hour))
             {
