@@ -1,0 +1,45 @@
+﻿using KTaseva.Data;
+using KTaseva.Models;
+using KTaseva.Services.Appointments;
+using KTaseva.Tests.Configurations;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Xunit;
+
+namespace KTaseva.Tests.Services.Appointments
+{
+    public class GetDisabledDatesTests
+    {
+        private readonly KTasevaDbContext db;
+        private readonly AppointmentService appointmentService;
+
+        public GetDisabledDatesTests()
+        {
+            this.db = new KTasevaDbContext(MemoryDatabase.OptionBuilder());
+            this.appointmentService = new AppointmentService(db);
+        }
+
+        [Fact]
+        public void GetDisabledDatesReturnCorrectly()
+        {
+            var disabledDate = new DisableDate
+            {
+                Id = 1,
+                DisabledDates = DateTime.Today.AddDays(+1)
+            };
+
+            this.db.DisableDates.Add(disabledDate);
+            this.db.SaveChanges();
+
+            var dates = this.appointmentService.GetDisabledDates();
+
+            var date = DateTime.Today.AddDays(+1).ToString("dd.MM.yyyy");
+            var expected = JsonConvert.SerializeObject(date);
+
+            Assert.Contains(expected, dates);
+        }
+    }
+}
+
