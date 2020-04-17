@@ -106,6 +106,7 @@ namespace KTaseva.Tests.Services.Appointments
         [Theory]
         [InlineData("27.04.2020", 1, 10, 11)]
         [InlineData("27.04.2020", 2, 10, 11)]
+        [InlineData("27.04.2020", 3, 10, 11)]
         public void GetFreeAppointmentByDateWithTwoBusyTimeReturnCorrectly(string date, int procedureId, int oneHour, int twoHour)
         {
             var procedures = new List<Procedure>
@@ -170,12 +171,17 @@ namespace KTaseva.Tests.Services.Appointments
                 Assert.DoesNotContain("11:30:00", freeDates);
                 Assert.DoesNotContain("12:00:00", freeDates);
             }
-            //else if (procedureId == 3)
-            //{
-            //    Assert.DoesNotContain("10:00:00", freeDates);
-            //    Assert.Contains("09:30:00", freeDates);
-            //    Assert.Contains("10:30:00", freeDates);
-            //}
+            else if (procedureId == 3)
+            {
+                Assert.DoesNotContain("10:00:00", freeDates);
+                Assert.DoesNotContain("11:00:00", freeDates);
+                Assert.DoesNotContain("09:00:00", freeDates);
+                Assert.DoesNotContain("09:30:00", freeDates);
+                Assert.DoesNotContain("10:30:00", freeDates);
+                Assert.DoesNotContain("11:30:00", freeDates);
+                Assert.DoesNotContain("12:00:00", freeDates);
+                Assert.DoesNotContain("12:30:00", freeDates);
+            }
         }
     }
 }
