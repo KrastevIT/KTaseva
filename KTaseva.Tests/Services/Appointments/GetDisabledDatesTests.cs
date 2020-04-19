@@ -4,8 +4,6 @@ using KTaseva.Services.Appointments;
 using KTaseva.Tests.Configurations;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace KTaseva.Tests.Services.Appointments
