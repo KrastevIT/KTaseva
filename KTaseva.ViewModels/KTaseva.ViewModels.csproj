@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KTaseva.Common\KTaseva.Common.csproj" />
     <ProjectReference Include="..\KTaseva.Models\KTaseva.Models.csproj" />
     <ProjectReference Include="..\KTaseva.Services.Mapping\KTaseva.Services.Mapping.csproj" />
   </ItemGroup>
