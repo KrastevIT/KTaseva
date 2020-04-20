@@ -1,12 +1,8 @@
 ﻿using KTaseva.Data;
-using KTaseva.Models;
 using KTaseva.Services.Procedures;
 using KTaseva.Tests.Configurations;
 using KTaseva.ViewModels.Admin;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace KTaseva.Tests.Services.Procedures
