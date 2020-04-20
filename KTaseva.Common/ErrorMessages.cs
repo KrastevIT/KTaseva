@@ -2,6 +2,6 @@
 {
     public class ErrorMessages
     {
-        public const string InvalidProcedureId = "Invalid ProcedureId {0}";
+        public const string AppointmentTimeRange = "Часът трябва да е между 09:00 и 18:00";
     }
 }

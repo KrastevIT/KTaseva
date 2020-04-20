@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using KTaseva.Common;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,7 +18,7 @@ namespace KTaseva.ViewModels.Appointments
         public DateTime Date { get; set; } = DateTime.Today.AddDays(-1);
 
         [Range(typeof(TimeSpan), "09:00", "18:00",
-            ErrorMessage = "Часът трябва да е между 09:00 и 18:00")]
+            ErrorMessage = ErrorMessages.AppointmentTimeRange)]
         public TimeSpan Hour { get; set; }
 
         public List<SelectListItem> Procedures { get; set; }

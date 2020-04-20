@@ -79,7 +79,7 @@ namespace KTaseva.Services.Appointments
             if (!this.db.Procedures.Any(x => x.Id == procedureId))
             {
                 throw new InvalidOperationException(
-                    string.Format(ErrorMessages.InvalidProcedureId, procedureId));
+                    string.Format(ExceptionMessages.InvalidProcedureId, procedureId));
             }
             var all = new List<TimeSpan>();
             var time = TimeSpan.FromHours(9);
