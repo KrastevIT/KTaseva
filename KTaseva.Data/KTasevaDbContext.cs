@@ -18,6 +18,8 @@ namespace KTaseva.Data
 
         public DbSet<DisableDate> DisableDates { get; set; }
 
+        public DbSet<AboutMe> AboutMe { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

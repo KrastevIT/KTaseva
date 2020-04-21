@@ -2,6 +2,7 @@
 using KTaseva.Models;
 using KTaseva.ViewModels.Admin;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,7 +20,10 @@ namespace KTaseva.Services.Admin
         public IEnumerable<AdminAppointmentViewModel> GetAppointment()
         {
             var appointments = this.db.Appointments
+                .Where(x => x.Date >= DateTime.Today)
                 .Include(x => x.Procedure)
+                .OrderBy(x => x.Date)
+                .ThenBy(x => x.Hour)
                 .ToList();
 
             var models = new List<AdminAppointmentViewModel>();
