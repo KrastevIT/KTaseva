@@ -45,5 +45,11 @@ namespace KTaseva.App.Controllers
             this.aboutMeService.Edit(model);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Delete(string id)
+        {
+            this.aboutMeService.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }

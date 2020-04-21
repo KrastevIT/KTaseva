@@ -12,5 +12,7 @@ namespace KTaseva.Services.AboutMe
         AboutMeInputModel GetById(string id);
 
         void Edit(AboutMeInputModel model);
+
+        void Delete(string id);
     }
 }

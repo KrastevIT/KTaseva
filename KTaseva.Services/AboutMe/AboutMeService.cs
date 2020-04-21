@@ -52,5 +52,13 @@ namespace KTaseva.Services.AboutMe
 
             return about;
         }
+
+        public void Delete(string id)
+        {
+            var about = this.db.AboutMe.FirstOrDefault(x => x.Id == int.Parse(id));
+
+            this.db.Remove(about);
+            this.db.SaveChanges();
+        }
     }
 }

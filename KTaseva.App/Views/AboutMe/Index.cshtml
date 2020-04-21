@@ -12,8 +12,7 @@
             <h3>За <span class="site-color">мен</span></h3>
             @if (this.User.IsInRole("Administrator"))
             {
-                <a type="button" asp-area="" asp-controller="AboutMe" asp-action="Add" class="btn btn-primary btn-sm">Добави</a>
-            }
+<a type="button" asp-area="" asp-controller="AboutMe" asp-action="Add" class="btn btn-primary btn-sm">Добави</a>}
         </div>
         <!-- ============ step 1 =========== -->
         @foreach (var about in Model)
@@ -21,32 +20,33 @@
             count++;
             if (count % 2 != 0)
             {
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="process-box process-left" data-aos="fade-right" data-aos-duration="1000">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="process-step">
-                                        <p class="m-0 p-0">@about.Title</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-7">
-                                    <p>@about.Description</p>
-                                    <a type="button" asp-area="" asp-controller="AboutMe" asp-action="Edit" asp-route-id="@about.Id" class="btn btn-warning btn-sm">Редактирай</a>
-
-                                </div>
-                            </div>
-                            <div class="process-line-l"></div>
-                        </div>
+<div class="row">
+    <div class="col-md-5">
+        <div class="process-box process-left" data-aos="fade-right" data-aos-duration="1000">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="process-step">
+                        <p class="m-0 p-0">@about.Title</p>
                     </div>
-                    <div class="col-md-2"></div>
-                    <div class="col-md-5">
-                        <div class="process-point-right"></div>
-                    </div>
-                </div> 
-            }
-                else
-                {
+                </div>
+                <div class="col-md-7">
+                    <p>@about.Description</p>
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+<a type="button" asp-area="" asp-controller="AboutMe" asp-action="Edit" asp-route-id="@about.Id" class="btn btn-warning btn-sm">Редактирай</a>
+                        <a type="button" asp-area="" asp-controller="AboutMe" asp-action="Delete" asp-route-id="@about.Id" class="btn btn-danger btn-sm">Изтрий</a>}
+                </div>
+            </div>
+            <div class="process-line-l"></div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5">
+        <div class="process-point-right"></div>
+    </div>
+</div> }
+else
+{
 <div class="row">
 
     <div class="col-md-5">
@@ -63,7 +63,11 @@
                 </div>
                 <div class="col-md-7">
                     <p>@about.Description</p>
-                    <a type="button" asp-area="" asp-controller="AboutMe" asp-action="Edit" asp-route-id="@about.Id" class="btn btn-warning btn-sm">Редактирай</a>
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        <a type="button" asp-area="" asp-controller="AboutMe" asp-action="Edit" asp-route-id="@about.Id" class="btn btn-warning btn-sm">Редактирай</a>
+                        <a type="button" asp-area="" asp-controller="AboutMe" asp-action="Delete" asp-route-id="@about.Id" class="btn btn-danger btn-sm">Изтрий</a>
+                    }
                 </div>
             </div>
         </div>
