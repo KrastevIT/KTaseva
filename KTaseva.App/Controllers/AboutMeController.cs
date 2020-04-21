@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using KTaseva.Services.AboutMe;
 using KTaseva.ViewModels.AboutMe;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace KTaseva.App.Controllers
 {
     public class AboutMeController : Controller
     {
+        private readonly IAboutMeService aboutMeService;
+
+        public AboutMeController(IAboutMeService aboutMeService)
+        {
+            this.aboutMeService = aboutMeService;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var models = this.aboutMeService.All<AboutMeViewModel>();
+            return View(models);
         }
 
 
@@ -23,17 +29,20 @@ namespace KTaseva.App.Controllers
         [HttpPost]
         public IActionResult Add(AboutMeInputModel model)
         {
+            this.aboutMeService.Add(model);
             return RedirectToAction("Index");
         }
 
-        public IActionResult Edit()
+        public IActionResult Edit(string id)
         {
-            return View();
+            var model = this.aboutMeService.GetById(id);
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult Edit(AboutMeInputModel model)
         {
+            this.aboutMeService.Edit(model);
             return RedirectToAction("Index");
         }
     }

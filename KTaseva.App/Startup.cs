@@ -1,9 +1,9 @@
-using AutoMapper;
 using CloudinaryDotNet;
 using KTaseva.App.Common;
 using KTaseva.App.Hubs;
 using KTaseva.Data;
 using KTaseva.Models;
+using KTaseva.Services.AboutMe;
 using KTaseva.Services.Admin;
 using KTaseva.Services.Appointments;
 using KTaseva.Services.Cloudinary;
@@ -108,6 +108,7 @@ namespace KTaseva.App
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IProcedureService, ProcedureService>();
+            services.AddScoped<IAboutMeService, AboutMeService>();
         }
     }
 }

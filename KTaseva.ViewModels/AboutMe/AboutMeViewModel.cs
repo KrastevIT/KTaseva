@@ -2,7 +2,7 @@
 
 namespace KTaseva.ViewModels.AboutMe
 {
-    public class AboutMeInputModel : IMapFrom<KTaseva.Models.AboutMe>
+    public class AboutMeViewModel : IMapFrom<KTaseva.Models.AboutMe>
     {
         public int Id { get; set; }
 
