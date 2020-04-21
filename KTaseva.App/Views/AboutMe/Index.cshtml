@@ -12,9 +12,9 @@
             <h3>За <span class="site-color">мен</span></h3>
             @if (this.User.IsInRole("Administrator"))
             {
-<a type="button" asp-area="" asp-controller="AboutMe" asp-action="Add" class="btn btn-primary btn-sm">Добави</a>}
+                <a type="button" asp-area="" asp-controller="AboutMe" asp-action="Add" class="btn btn-primary btn-sm">Добави</a>
+            }
         </div>
-        <!-- ============ step 1 =========== -->
         @foreach (var about in Model)
         {
             count++;
@@ -45,41 +45,35 @@
         <div class="process-point-right"></div>
     </div>
 </div> }
-else
-{
-<div class="row">
-
-    <div class="col-md-5">
-        <div class="process-point-left"></div>
-    </div>
-    <div class="col-md-2"></div>
-    <div class="col-md-5">
-        <div class="process-box process-right" data-aos="fade-left" data-aos-duration="1000">
-            <div class="row">
+            else
+            {
+                <div class="row">
                 <div class="col-md-5">
-                    <div class="process-step">
-                        <p class="m-0 p-0">@about.Title</p>
+                <div class="process-point-left"></div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-5">
+                    <div class="process-box process-right" data-aos="fade-left" data-aos-duration="1000">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="process-step">
+                                    <p class="m-0 p-0">@about.Title</p>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <p>@about.Description</p>
+                                @if (this.User.IsInRole("Administrator"))
+                                {
+                                    <a type="button" asp-area="" asp-controller="AboutMe" asp-action="Edit" asp-route-id="@about.Id" class="btn btn-warning btn-sm">Редактирай</a>
+                                    <a type="button" asp-area="" asp-controller="AboutMe" asp-action="Delete" asp-route-id="@about.Id" class="btn btn-danger btn-sm">Изтрий</a>
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <p>@about.Description</p>
-                    @if (this.User.IsInRole("Administrator"))
-                    {
-                        <a type="button" asp-area="" asp-controller="AboutMe" asp-action="Edit" asp-route-id="@about.Id" class="btn btn-warning btn-sm">Редактирай</a>
-                        <a type="button" asp-area="" asp-controller="AboutMe" asp-action="Delete" asp-route-id="@about.Id" class="btn btn-danger btn-sm">Изтрий</a>
-                    }
                 </div>
-            </div>
-        </div>
-    </div>
-
-</div>}
-}
+            }
+         }
     </div>
 </section>
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-<script>AOS.init();</script>
