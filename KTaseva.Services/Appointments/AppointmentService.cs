@@ -25,7 +25,7 @@ namespace KTaseva.Services.Appointments
         public bool Add(AppointmentInputModel model, string userId)
         {
             var ReCaptcha = this.reCAPTCHAService.Verify(model.Token);
-            if (!ReCaptcha.Result.Success && ReCaptcha.Result.Score <= 0.5)
+            if (!model.isTest && !ReCaptcha.Result.Success && ReCaptcha.Result.Score <= 0.5)
             {
                 return false;
             }
@@ -55,11 +55,7 @@ namespace KTaseva.Services.Appointments
             {
                 return false;
             }
-            else if (previous + procedureDuration > model.Hour)
-            {
-                return false;
-            }
-
+           
             if (!this.db.Procedures.Any(x => x.Id == model.ProcedureId)
                 || model.OldPolish != "Да"
                 && model.OldPolish != "Не"

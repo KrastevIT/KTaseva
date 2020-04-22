@@ -1,4 +1,5 @@
-﻿using KTaseva.Models;
+﻿using KTaseva.Common;
+using KTaseva.Models;
 using KTaseva.Services.Appointments;
 using KTaseva.Services.Procedures;
 using KTaseva.ViewModels.Appointments;
@@ -44,7 +45,7 @@ namespace KTaseva.App.Controllers
             {
                 model.Procedures = this.procedureService.GetProceduresDropDownList();
                 model.DisabledDates = this.appointmentService.GetDisabledDates();
-
+                this.ViewData["invalid"] = ErrorMessages.AppointmentInvalidAdd;
                 return View(model);
             }
 
@@ -52,13 +53,13 @@ namespace KTaseva.App.Controllers
             var isValid = this.appointmentService.Add(model, userId);
             if (!isValid)
             {
-                this.ViewData["error"] = $"Часът в {model.Hour} току що беше запазен!";
+                this.ViewData["error"] = string.Format(ErrorMessages.AppointmentBusy, model.Hour);
                 model.Procedures = this.procedureService.GetProceduresDropDownList();
                 return View(model);
             }
 
+            this.ViewData["successfully"] = string.Format(ErrorMessages.AppointmentSuccessfullyAdd, model.Hour);
             return RedirectToAction("Index", "Home");
-            //TODO ViewData message
         }
     }
 }

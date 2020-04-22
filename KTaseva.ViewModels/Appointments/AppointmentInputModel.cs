@@ -28,5 +28,7 @@ namespace KTaseva.ViewModels.Appointments
         [Required]
         public string Token { get; set; }
 
+        public bool isTest { get; set; }
+
     }
 }

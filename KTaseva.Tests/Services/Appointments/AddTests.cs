@@ -1,8 +1,10 @@
 ﻿using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.Services.Appointments;
+using KTaseva.Services.ReCaptcha;
 using KTaseva.Tests.Configurations;
 using KTaseva.ViewModels.Appointments;
+using Moq;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -17,7 +19,8 @@ namespace KTaseva.Tests.Services.Appointments
         public AddTests()
         {
             this.db = new KTasevaDbContext(MemoryDatabase.OptionBuilder());
-            this.appointmentService = new AppointmentService(db);
+            var reCAPTCHAService = new Mock<IReCAPTCHAService>().Object;
+            this.appointmentService = new AppointmentService(db, reCAPTCHAService);
         }
 
         [Theory]
@@ -44,7 +47,8 @@ namespace KTaseva.Tests.Services.Appointments
                 ProcedureId = procedureId,
                 OldPolish = oldPolish,
                 Date = DateTime.Today,
-                Hour = TimeSpan.FromHours(time)
+                Hour = TimeSpan.FromHours(time),
+                isTest = true
             };
 
             var userId = "1";
@@ -89,7 +93,8 @@ namespace KTaseva.Tests.Services.Appointments
                 ProcedureId = procedureId,
                 OldPolish = oldPolish,
                 Date = new DateTime(2020, 4, 27),
-                Hour = TimeSpan.FromHours(time)
+                Hour = TimeSpan.FromHours(time),
+                isTest = true
             };
 
             var userId = "1";

@@ -1,7 +1,9 @@
 ﻿using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.Services.Appointments;
+using KTaseva.Services.ReCaptcha;
 using KTaseva.Tests.Configurations;
+using Moq;
 using Newtonsoft.Json;
 using System;
 using Xunit;
@@ -16,7 +18,8 @@ namespace KTaseva.Tests.Services.Appointments
         public GetDisabledDatesTests()
         {
             this.db = new KTasevaDbContext(MemoryDatabase.OptionBuilder());
-            this.appointmentService = new AppointmentService(db);
+            var reCAPTCHAService = new Mock<IReCAPTCHAService>().Object;
+            this.appointmentService = new AppointmentService(db, reCAPTCHAService);
         }
 
         [Fact]
