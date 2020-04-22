@@ -1,5 +1,7 @@
 ﻿@page
 @model LoginModel
+@using Microsoft.Extensions.Options
+@inject IOptions<ReCAPTCHASettings> GooglereCAPTCHA
 
 @{
     ViewData["Title"] = "Log in";
@@ -29,6 +31,7 @@
                     </label>
                 </div>
             </div>
+            <input type="hidden" asp-for="Input.Token" />
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Влез</button>
             </div>
@@ -78,3 +81,13 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+
+<script src="https://www.google.com/recaptcha/api.js?render=@GooglereCAPTCHA.Value.ReCAPTCHA_Site_Key"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('@GooglereCAPTCHA.Value.ReCAPTCHA_Site_Key', { action: 'homepage' }).then(function (token) {
+            $('#Input_Token').val(token);
+        });
+    });
+</script>

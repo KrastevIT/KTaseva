@@ -7,7 +7,8 @@ My defense project for ASP.NET Core
 * SignalR
 * DateTimePicker
 * CloudinaryDotNet
-*SendGrid
+* SendGrid
+* ReCAPTCHA
 * xUnit
 * Services
 * View Components

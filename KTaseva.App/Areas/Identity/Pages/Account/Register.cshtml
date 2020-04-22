@@ -84,3 +84,12 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+<script src="https://www.google.com/recaptcha/api.js?render=@GooglereCAPTCHA.Value.ReCAPTCHA_Site_Key"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('@GooglereCAPTCHA.Value.ReCAPTCHA_Site_Key', { action: 'homepage' }).then(function (token) {
+            $('#Input_Token').val(token);
+        });
+    });
+</script>
