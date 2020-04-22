@@ -1,4 +1,5 @@
 using CloudinaryDotNet;
+using KTaseva.App.Areas.Identity.Services;
 using KTaseva.App.Common;
 using KTaseva.App.Hubs;
 using KTaseva.Data;
@@ -14,6 +15,7 @@ using KTaseva.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -53,6 +55,8 @@ namespace KTaseva.App
             });
 
             RegisterServiceLayer(services);
+
+            services.Configure<SendGridOptions>(this.Configuration.GetSection("EmailSettings"));
 
             Account account = new Account(
                         this.Configuration["Cloudinary:AppName"],
@@ -103,6 +107,8 @@ namespace KTaseva.App
 
         private void RegisterServiceLayer(IServiceCollection services)
         {
+            services.AddSingleton<IEmailSender, SendGridEmailSender>();
+
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<ICloudinaryService, CloudinaryService>();
             services.AddScoped<IPhotoService, PhotoService>();
