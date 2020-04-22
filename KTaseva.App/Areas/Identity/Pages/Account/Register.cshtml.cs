@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using KTaseva.Services.ReCaptcha;
 
 namespace KTaseva.App.Areas.Identity.Pages.Account
 {
@@ -24,17 +25,20 @@ namespace KTaseva.App.Areas.Identity.Pages.Account
         private readonly UserManager<User> userManager;
         private readonly ILogger<RegisterModel> logger;
         private readonly IEmailSender emailSender;
+        private readonly IReCAPTCHAService reCAPTCHAService;
 
         public RegisterModel(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IReCAPTCHAService reCAPTCHAService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.logger = logger;
             this.emailSender = emailSender;
+            this.reCAPTCHAService = reCAPTCHAService;
         }
 
         [BindProperty]
@@ -74,6 +78,9 @@ namespace KTaseva.App.Areas.Identity.Pages.Account
             [Display(Name = "Потвърдете парола")]
             [Compare("Password", ErrorMessage = "Паролата не съвпада.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            public string Token { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -86,6 +93,14 @@ namespace KTaseva.App.Areas.Identity.Pages.Account
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            var ReCaptcha = this.reCAPTCHAService.Verify(Input.Token);
+            if (!ReCaptcha.Result.Success && ReCaptcha.Result.Score <= 0.5)
+            {
+                ModelState.AddModelError(string.Empty, "Your are Not Humman!");
+                return Page();
+            }
+
             if (ModelState.IsValid)
             {
                 var user = new User

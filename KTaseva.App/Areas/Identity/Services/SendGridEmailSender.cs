@@ -23,8 +23,6 @@ namespace KTaseva.App.Areas.Identity.Services
             var msg = MailHelper.CreateSingleEmail(from, to, subject, htmlMessage, htmlMessage);
             var response = await client.SendEmailAsync(msg);
             var body = await response.Body.ReadAsStringAsync();
-            var statusCode = response.StatusCode;
-            ;
         }
     }
 }

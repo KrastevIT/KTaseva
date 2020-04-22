@@ -11,7 +11,9 @@ using KTaseva.Services.Cloudinary;
 using KTaseva.Services.Mapping;
 using KTaseva.Services.Photos;
 using KTaseva.Services.Procedures;
+using KTaseva.Services.ReCaptcha;
 using KTaseva.ViewModels;
+using KTaseva.ViewModels.ReCaptcha;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -57,6 +59,7 @@ namespace KTaseva.App
             RegisterServiceLayer(services);
 
             services.Configure<SendGridOptions>(this.Configuration.GetSection("EmailSettings"));
+            services.Configure<ReCAPTCHASettings>(Configuration.GetSection("GooglereCAPTCHA"));
 
             Account account = new Account(
                         this.Configuration["Cloudinary:AppName"],
@@ -115,6 +118,7 @@ namespace KTaseva.App
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IProcedureService, ProcedureService>();
             services.AddScoped<IAboutMeService, AboutMeService>();
+            services.AddTransient<IReCAPTCHAService, ReCAPTCHAService>();
         }
     }
 }
