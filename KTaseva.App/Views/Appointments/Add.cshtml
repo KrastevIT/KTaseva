@@ -1,4 +1,6 @@
 ﻿@model AppointmentInputModel
+@using Microsoft.Extensions.Options
+@inject IOptions<ReCAPTCHASettings> GooglereCAPTCHA
 
 <div class="container col-md-4">
     <h2 class="text-center">Запази час</h2>
@@ -42,6 +44,7 @@
                 </div>
             }
         </div>
+        <input type="hidden" asp-for="@Model.Token" id="tokenId" />
         <hr />
         <div class="form-group">
             <div class="text-center">
@@ -60,3 +63,12 @@
 <script src="~/build/jquery.datetimepicker.full.min.js"></script>
 <script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
 <script src="~/js/calendar.js"></script>
+
+<script src="https://www.google.com/recaptcha/api.js?render=@GooglereCAPTCHA.Value.ReCAPTCHA_Site_Key"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('@GooglereCAPTCHA.Value.ReCAPTCHA_Site_Key', { action: 'homepage' }).then(function (token) {
+            $('#tokenId').val(token);
+        });
+    });
+</script>

@@ -25,5 +25,8 @@ namespace KTaseva.ViewModels.Appointments
 
         public string DisabledDates { get; set; }
 
+        [Required]
+        public string Token { get; set; }
+
     }
 }

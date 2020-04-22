@@ -1,6 +1,7 @@
 ﻿using KTaseva.Common;
 using KTaseva.Data;
 using KTaseva.Models;
+using KTaseva.Services.ReCaptcha;
 using KTaseva.ViewModels.Appointments;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -13,14 +14,22 @@ namespace KTaseva.Services.Appointments
     public class AppointmentService : IAppointmentService
     {
         private readonly KTasevaDbContext db;
+        private readonly IReCAPTCHAService reCAPTCHAService;
 
-        public AppointmentService(KTasevaDbContext db)
+        public AppointmentService(KTasevaDbContext db, IReCAPTCHAService reCAPTCHAService)
         {
             this.db = db;
+            this.reCAPTCHAService = reCAPTCHAService;
         }
 
         public bool Add(AppointmentInputModel model, string userId)
         {
+            var ReCaptcha = this.reCAPTCHAService.Verify(model.Token);
+            if (!ReCaptcha.Result.Success && ReCaptcha.Result.Score <= 0.5)
+            {
+                return false;
+            }
+
             var isExistHour = this.db.Appointments
                 .Where(x => x.Date == model.Date)
                 .Any(x => x.Hour == model.Hour);
