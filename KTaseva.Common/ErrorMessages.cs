@@ -8,6 +8,6 @@
 
         public const string AppointmentBusy = "Часът в {0} току що беше запазен!";
 
-        public const string AppointmentSuccessfullyAdd = "Успешно добавихте час в {0}";
+        public const string AppointmentSuccessfullyAdd = "Успешно записахте час на {0} в {1}";
     }
 }

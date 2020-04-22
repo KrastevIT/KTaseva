@@ -58,7 +58,9 @@ namespace KTaseva.App.Controllers
                 return View(model);
             }
 
-            this.ViewData["successfully"] = string.Format(ErrorMessages.AppointmentSuccessfullyAdd, model.Hour);
+            this.TempData["successfully"] = string.Format(
+                ErrorMessages.AppointmentSuccessfullyAdd, model.Date.ToShortDateString(), model.Hour);
+
             return RedirectToAction("Index", "Home");
         }
     }
