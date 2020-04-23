@@ -14,7 +14,6 @@ function GetProcedure() {
 };
 
 let disabledDates = document.getElementById("disabledDates").value;
-console.log(disabledDates);
 
 $('#datetimepicker').datetimepicker({
     timepicker: false,
@@ -31,10 +30,7 @@ var time = $('#timepicker').datetimepicker({
 
 $("#datetimepicker").change(function () {
     currentData = $("#datetimepicker").val()
-
     connection.invoke("GetUpdateAppointment", currentData, procedureId);
-
-
 });
 
 connection.on("Get",
@@ -54,6 +50,6 @@ connection.on("Get",
 
 $("#timepicker").click(function () {
     currentData = document.getElementById("datetimepicker").value;
-    connection.invoke("GetUpdateAppointment", currentData, procedureId);
     console.log(currentData);
+    connection.invoke("GetUpdateAppointment", currentData, procedureId);
 });

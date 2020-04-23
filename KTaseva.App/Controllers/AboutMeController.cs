@@ -1,9 +1,7 @@
 ﻿using KTaseva.Services.AboutMe;
 using KTaseva.ViewModels.AboutMe;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace KTaseva.App.Controllers
 {

@@ -7,7 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace KTaseva.Services.Appointments
 {
@@ -55,7 +57,7 @@ namespace KTaseva.Services.Appointments
             {
                 return false;
             }
-           
+
             if (!this.db.Procedures.Any(x => x.Id == model.ProcedureId)
                 || model.OldPolish != "Да"
                 && model.OldPolish != "Не"
@@ -81,6 +83,12 @@ namespace KTaseva.Services.Appointments
 
         public List<string> GetFreeAppointmentByDate(string date, int procedureId)
         {
+            if (date == null)
+            {
+                throw new InvalidOperationException(
+                    string.Format(ExceptionMessages.InvalidDate, date));
+            }
+
             if (!this.db.Procedures.Any(x => x.Id == procedureId))
             {
                 throw new InvalidOperationException(
@@ -96,7 +104,10 @@ namespace KTaseva.Services.Appointments
             }
 
             var free = new List<string>();
-            var currentDate = DateTime.Parse(date);
+
+            var dateFormat = date.Replace(".", "/");
+            var currentDate = DateTime.ParseExact(
+                dateFormat, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             var procedureDuration = this.db.Procedures
                 .Where(x => x.Id == procedureId)

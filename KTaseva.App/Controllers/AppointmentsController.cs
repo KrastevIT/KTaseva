@@ -6,6 +6,8 @@ using KTaseva.ViewModels.Appointments;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Globalization;
 
 namespace KTaseva.App.Controllers
 {
@@ -41,6 +43,9 @@ namespace KTaseva.App.Controllers
         [HttpPost]
         public IActionResult Add(AppointmentInputModel model)
         {
+            model.Date = DateTime.ParseExact(
+                model.GetData, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+
             if (!ModelState.IsValid)
             {
                 model.Procedures = this.procedureService.GetProceduresDropDownList();

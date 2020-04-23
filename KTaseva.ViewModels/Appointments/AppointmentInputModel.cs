@@ -30,5 +30,7 @@ namespace KTaseva.ViewModels.Appointments
 
         public bool isTest { get; set; }
 
+        public string GetData { get; set; } = DateTime.Today.AddDays(-1).ToShortDateString();
+
     }
 }

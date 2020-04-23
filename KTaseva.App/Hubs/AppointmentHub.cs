@@ -18,5 +18,6 @@ namespace KTaseva.App.Hubs
             var freeHours = this.appointmentService.GetFreeAppointmentByDate(date, int.Parse(procedureId));
             await this.Clients.Caller.SendAsync("Get", freeHours);
         }
+
     }
 }

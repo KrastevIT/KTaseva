@@ -1,6 +1,8 @@
 ﻿using KTaseva.Services.Procedures;
 using KTaseva.ViewModels;
+using KTaseva.ViewModels.Procedures;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace KTaseva.App.Controllers

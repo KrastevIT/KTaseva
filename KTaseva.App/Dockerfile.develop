@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+ARG BUILD_CONFIGURATION=Debug
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV ASPNETCORE_URLS=http://+:80
+ENV DOTNET_USE_POLLING_FILE_WATCHER=true
+EXPOSE 80
+
+WORKDIR /src
+COPY ["KTaseva.App/KTaseva.App.csproj", "KTaseva.App/"]
+COPY ["KTaseva.Common/KTaseva.Common.csproj", "KTaseva.Common/"]
+COPY ["KTaseva.Data/KTaseva.Data.csproj", "KTaseva.Data/"]
+COPY ["KTaseva.Models/KTaseva.Models.csproj", "KTaseva.Models/"]
+COPY ["KTaseva.Services.Mapping/KTaseva.Services.Mapping.csproj", "KTaseva.Services.Mapping/"]
+COPY ["KTaseva.Services/KTaseva.Services.csproj", "KTaseva.Services/"]
+COPY ["KTaseva.ViewModels/KTaseva.ViewModels.csproj", "KTaseva.ViewModels/"]
+
+RUN dotnet restore "KTaseva.App/KTaseva.App.csproj"
+COPY . .
+WORKDIR "/src/KTaseva.App"
+RUN dotnet build --no-restore "KTaseva.App.csproj" -c $BUILD_CONFIGURATION
+
+RUN echo "exec dotnet run --no-build --no-launch-profile -c $BUILD_CONFIGURATION --" > /entrypoint.sh
+
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]

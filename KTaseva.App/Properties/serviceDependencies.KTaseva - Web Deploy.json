@@ -1,14 +1,16 @@
 {
   "dependencies": {
     "mssql1": {
-      "type": "mssql.local",
-      "connectionId": "DefaultConnection"
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroup')]/providers/Microsoft.Sql/servers/ktaseva/databases/KTasevaDb",
+      "type": "mssql.azure",
+      "connectionId": "DefaultConnection",
+      "secretStore": "AzureAppSettings"
     },
     "appInsights1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroup')]/providers/microsoft.insights/components/KTaseva",
       "type": "appInsights.azure",
       "connectionId": "APPINSIGHTS_INSTRUMENTATIONKEY",
-      "secretStore": "LocalSecretsFile"
+      "secretStore": "AzureAppSettings"
     }
   }
 }

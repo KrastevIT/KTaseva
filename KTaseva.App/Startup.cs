@@ -67,6 +67,7 @@ namespace KTaseva.App
                         this.Configuration["Cloudinary:AppSecret"]);
             Cloudinary cloudinary = new Cloudinary(account);
             services.AddSingleton(cloudinary);
+            services.AddApplicationInsightsTelemetry();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -90,8 +91,8 @@ namespace KTaseva.App
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.SeedAdmin();
+            //TODO
+            //app.SeedAdmin();
 
             app.UseEndpoints(endpoints =>
             {
@@ -105,6 +106,8 @@ namespace KTaseva.App
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+
+
             });
         }
 
