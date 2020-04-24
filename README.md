@@ -1,8 +1,8 @@
 My defense project for ASP.NET Core
-https://ktaseva.azurewebsites.net/
+* https://ktaseva.azurewebsites.net/
 
-Username admin@example.com
-Password Test123@
+* Username admin@example.com
+* Password Test123@
 
 # 🛠 Built with:
 * ASP.NET Core 3.1
