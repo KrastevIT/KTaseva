@@ -64,7 +64,7 @@ namespace KTaseva.App.Controllers
             }
 
             this.TempData["successfully"] = string.Format(
-                ErrorMessages.AppointmentSuccessfullyAdd, model.Date.ToShortDateString(), model.Hour);
+                SuccessfullyMessages.AppointmentSuccessfullyAdd, model.Date.ToShortDateString(), model.Hour);
 
             return RedirectToAction("Index", "Home");
         }

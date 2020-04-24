@@ -1,4 +1,5 @@
-﻿using KTaseva.Services.Procedures;
+﻿using KTaseva.Common;
+using KTaseva.Services.Procedures;
 using KTaseva.ViewModels.Admin;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,7 +28,8 @@ namespace KTaseva.App.Areas.Admin.Controllers
             }
 
             this.procedureService.Add(model);
-            this.ViewData["alert"] = $"Успешно добавихте нова процедура {model.Name}.";
+            this.ViewData["alert"] = string.Format(
+                SuccessfullyMessages.SuccessfullyAddProcedure, model.Name);
             return View();
         }
     }

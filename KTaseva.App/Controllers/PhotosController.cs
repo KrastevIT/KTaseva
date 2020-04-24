@@ -4,6 +4,7 @@ using KTaseva.Services.Photos;
 using KTaseva.ViewModels.Admin;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace KTaseva.App.Controllers
@@ -33,6 +34,11 @@ namespace KTaseva.App.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AdminPhotoInputModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
             var userId = this.userManager.GetUserId(this.User);
             await this.cloudinaryService.UploadImageAsync(model.Photo, userId);
             return RedirectToAction(nameof(Index));

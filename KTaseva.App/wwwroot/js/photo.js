@@ -13,11 +13,11 @@ function readURL(input) {
     }
 }
 
-$(function () {
-    $('#upload').on('change', function () {
-        readURL(input);
-    });
-});
+//$(function () {
+//    $('#upload').on('change', function () {
+//        readURL(input);
+//    });
+//});
 
 /*  ==========================================
     SHOW UPLOADED IMAGE NAME

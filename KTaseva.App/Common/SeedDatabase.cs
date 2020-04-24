@@ -23,12 +23,8 @@ namespace KTaseva.App.Common
                 if (!await roleManager.RoleExistsAsync(role))
                 {
                     await roleManager.CreateAsync(new IdentityRole("Administrator"));
-                }
 
-                var user = await userManager.FindByNameAsync("admin");
-                if (user == null)
-                {
-                    user = new User()
+                    var user = new User()
                     {
                         UserName = "admin@example.com",
                         FirstName = "default",
