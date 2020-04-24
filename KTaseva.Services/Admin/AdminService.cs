@@ -26,6 +26,8 @@ namespace KTaseva.Services.Admin
                 .ThenBy(x => x.Hour)
                 .ToList();
 
+            appointments.Select(x => x.Date.ToShortDateString());
+
             var models = new List<AdminAppointmentViewModel>();
 
             foreach (var appointment in appointments)

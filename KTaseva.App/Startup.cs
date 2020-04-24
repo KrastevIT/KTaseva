@@ -91,6 +91,7 @@ namespace KTaseva.App
 
             app.UseAuthentication();
             app.UseAuthorization();
+
             //TODO
             //app.SeedAdmin();
 

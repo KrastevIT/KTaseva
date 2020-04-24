@@ -7,5 +7,7 @@ namespace KTaseva.ViewModels.Admin
         public int Id { get; set; }
 
         public DateTime DisabledDates { get; set; }
+
+        public string GetData { get; set; } = DateTime.Today.AddDays(-1).ToShortDateString();
     }
 }

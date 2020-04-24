@@ -30,6 +30,11 @@ namespace KTaseva.App.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult Add(AboutMeInputModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             this.aboutMeService.Add(model);
             return RedirectToAction("Index");
         }
