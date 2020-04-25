@@ -70,7 +70,8 @@ namespace KTaseva.App.Areas.Identity.Pages.Account
             public string PhoneNumber { get; set; }
 
             [Required(ErrorMessage = "Моля, въведете парола")]
-            [StringLength(100, ErrorMessage = "Паролата трябва да е поне {2} символа.", MinimumLength = 6)]
+            [MinLength(6,ErrorMessage = "Паролата трябва да е поне 6 символа")]
+            [MaxLength(50)]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
@@ -121,13 +122,13 @@ namespace KTaseva.App.Areas.Identity.Pages.Account
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
                     var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
+                        "/Appointments/",
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    await emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await emailSender.SendEmailAsync(Input.Email, "Регистрацията беше успешна",
+                        $"Вече може да запазвате часове.");
 
                     if (userManager.Options.SignIn.RequireConfirmedAccount)
                     {
