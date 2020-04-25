@@ -2,6 +2,8 @@
 procedure.addEventListener("change", GetProcedure);
 let procedureId = procedure.value;
 
+var currentData = document.getElementById("datetimepicker").value;
+
 let connection =
     new signalR.HubConnectionBuilder()
         .withUrl("/Appointments/Add")

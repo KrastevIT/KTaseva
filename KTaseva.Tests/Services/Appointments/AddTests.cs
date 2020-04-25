@@ -46,7 +46,7 @@ namespace KTaseva.Tests.Services.Appointments
             {
                 ProcedureId = procedureId,
                 OldPolish = oldPolish,
-                Date = DateTime.Today,
+                Date = DateTime.Today.ToString(),
                 Hour = TimeSpan.FromHours(time),
                 isTest = true
             };
@@ -92,7 +92,7 @@ namespace KTaseva.Tests.Services.Appointments
             {
                 ProcedureId = procedureId,
                 OldPolish = oldPolish,
-                Date = new DateTime(2020, 4, 27),
+                Date = new DateTime(2020, 4, 27).ToString(),
                 Hour = TimeSpan.FromHours(time),
                 isTest = true
             };

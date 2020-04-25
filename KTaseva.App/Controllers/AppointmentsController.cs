@@ -43,9 +43,6 @@ namespace KTaseva.App.Controllers
         [HttpPost]
         public IActionResult Add(AppointmentInputModel model)
         {
-            model.Date = DateTime.ParseExact(
-                model.GetData, "dd.MM.yyyy", CultureInfo.InvariantCulture);
-
             if (!ModelState.IsValid)
             {
                 model.Procedures = this.procedureService.GetProceduresDropDownList();
@@ -62,9 +59,8 @@ namespace KTaseva.App.Controllers
                 model.Procedures = this.procedureService.GetProceduresDropDownList();
                 return View(model);
             }
-
             this.TempData["successfully"] = string.Format(
-                SuccessfullyMessages.AppointmentSuccessfullyAdd, model.Date.ToShortDateString(), model.Hour);
+                SuccessfullyMessages.AppointmentSuccessfullyAdd, model.Date, model.Hour);
 
             return RedirectToAction("Index", "Home");
         }

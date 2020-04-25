@@ -4,6 +4,6 @@
     {
         public const string InvalidProcedureId = "Invalid ProcedureId {0}";
 
-        public const string InvalidDate = "Invalid Date {0}";
+        public const string InvalidCastDate = "Invalid Cast Date {0} {1}";
     }
 }

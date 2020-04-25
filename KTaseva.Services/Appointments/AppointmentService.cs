@@ -23,9 +23,19 @@ namespace KTaseva.Services.Appointments
             this.db = db;
             this.reCAPTCHAService = reCAPTCHAService;
         }
-
         public bool Add(AppointmentInputModel model, string userId)
         {
+            DateTime currentDate;
+            try
+            {
+                currentDate = DateTime.Parse(model.Date);
+            }
+            catch (Exception e)
+            {
+                throw new InvalidCastException(
+                   string.Format(ExceptionMessages.InvalidCastDate, model.Date, e));
+            }
+
             var ReCaptcha = this.reCAPTCHAService.Verify(model.Token);
             if (!model.isTest && !ReCaptcha.Result.Success && ReCaptcha.Result.Score <= 0.5)
             {
@@ -33,7 +43,7 @@ namespace KTaseva.Services.Appointments
             }
 
             var isExistHour = this.db.Appointments
-                .Where(x => x.Date == model.Date)
+                .Where(x => x.Date == currentDate)
                 .Any(x => x.Hour == model.Hour);
 
             var procedureDuration = this.db.Procedures
@@ -43,13 +53,13 @@ namespace KTaseva.Services.Appointments
 
             var previous = this.db.Appointments
                 .OrderByDescending(x => x.Hour)
-                .Where(x => x.Date == model.Date && x.Hour < model.Hour)
+                .Where(x => x.Date == currentDate && x.Hour < model.Hour)
                 .Select(x => x.Hour)
                 .FirstOrDefault();
 
             var next = this.db.Appointments
                 .OrderBy(x => x.Hour)
-                .Where(x => x.Date == model.Date && x.Hour > model.Hour)
+                .Where(x => x.Date == currentDate && x.Hour > model.Hour)
                 .Select(x => x.Hour)
                 .FirstOrDefault();
 
@@ -70,7 +80,7 @@ namespace KTaseva.Services.Appointments
             var appointment = new Appointment
             {
                 NailPolish = model.OldPolish,
-                Date = model.Date,
+                Date = currentDate,
                 Hour = model.Hour,
                 UserId = userId,
                 ProcedureId = model.ProcedureId
@@ -83,10 +93,15 @@ namespace KTaseva.Services.Appointments
 
         public List<string> GetFreeAppointmentByDate(string date, int procedureId)
         {
-            if (date == null)
+            DateTime currentDate;
+            try
             {
-                throw new InvalidOperationException(
-                    string.Format(ExceptionMessages.InvalidDate, date));
+                currentDate = DateTime.Parse(date);
+            }
+            catch (Exception e)
+            {
+                throw new InvalidCastException(
+                   string.Format(ExceptionMessages.InvalidCastDate, date, e));
             }
 
             if (!this.db.Procedures.Any(x => x.Id == procedureId))
@@ -104,10 +119,6 @@ namespace KTaseva.Services.Appointments
             }
 
             var free = new List<string>();
-
-            var dateFormat = date.Replace(".", "/");
-            var currentDate = DateTime.ParseExact(
-                dateFormat, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             var procedureDuration = this.db.Procedures
                 .Where(x => x.Id == procedureId)

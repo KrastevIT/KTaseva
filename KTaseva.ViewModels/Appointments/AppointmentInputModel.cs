@@ -14,8 +14,7 @@ namespace KTaseva.ViewModels.Appointments
         [Required]
         public string OldPolish { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime Date { get; set; } = DateTime.Today.AddDays(-1);
+        public string Date { get; set; } = DateTime.Today.AddDays(-1).ToShortDateString();
 
         [Range(typeof(TimeSpan), "09:00", "18:00",
             ErrorMessage = ErrorMessages.AppointmentTimeRange)]
@@ -30,7 +29,7 @@ namespace KTaseva.ViewModels.Appointments
 
         public bool isTest { get; set; }
 
-        public string GetData { get; set; } = DateTime.Today.AddDays(-1).ToShortDateString();
+        //public string GetData { get; set; } = DateTime.Today.AddDays(-1).ToShortDateString();
 
     }
 }
