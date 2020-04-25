@@ -1,4 +1,5 @@
-﻿using KTaseva.Data;
+﻿using KTaseva.Common;
+using KTaseva.Data;
 using KTaseva.Models;
 using KTaseva.ViewModels.Admin;
 using Microsoft.EntityFrameworkCore;
@@ -51,9 +52,20 @@ namespace KTaseva.Services.Admin
 
         public void AddDisableDate(AdminDisableDateInputModel model)
         {
+            DateTime currentDate;
+            try
+            {
+                currentDate = DateTime.Parse(model.DisabledDates);
+            }
+            catch (Exception e)
+            {
+                throw new InvalidCastException(
+                   string.Format(ExceptionMessages.InvalidCastDisableDate, model.DisabledDates, e));
+            }
+
             var disabledDate = new DisableDate
             {
-                DisabledDates = model.DisabledDates
+                DisabledDates = currentDate
             };
 
             this.db.DisableDates.Add(disabledDate);

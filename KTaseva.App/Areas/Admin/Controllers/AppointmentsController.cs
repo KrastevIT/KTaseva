@@ -1,4 +1,5 @@
-﻿using KTaseva.Services.Admin;
+﻿using KTaseva.Common;
+using KTaseva.Services.Admin;
 using KTaseva.ViewModels.Admin;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,15 +18,18 @@ namespace KTaseva.App.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = new AdminDisableDateInputModel();
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult Add(AdminDisableDateInputModel model)
         {
-            model.DisabledDates = DateTime.ParseExact(
-               model.GetData, "dd.MM.yyyy", CultureInfo.InvariantCulture);
             this.adminService.AddDisableDate(model);
+
+            this.TempData["successfully"] = string.Format(
+                SuccessfullyMessages.SuccessfullyAddDisableDate, model.DisabledDates);
+
             return RedirectToAction("Index");
         }
     }

@@ -1,12 +1,20 @@
 ﻿@model AdminDisableDateInputModel
 
 <div class="container col-md-4">
+    @if (this.TempData["successfully"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>@this.TempData["successfully"]</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
     <h1 class="text-center">Блокирай Дата</h1>
     <form asp-area="Admin" asp-controller="Appointments" asp-action="Add" method="post" class="form-horizontal">
         <div class="form-group">
             <label>Избери дата</label>
-            <div id="busyId"></div>
-            <input class="form-control" asp-for="@Model.GetData" id="datetimepicker" type="text" />
+            <input class="form-control" asp-for="@Model.DisabledDates" id="datetimepicker" type="text" />
         </div>
         <div class="form-group">
             <div class="text-center">
@@ -29,6 +37,7 @@
     $('#datetimepicker').datetimepicker({
         timepicker: false,
         dayOfWeekStart: 1,
+        formatDate: "d.m.Y",
         format: 'd.m.Y'
     });
 </script>
